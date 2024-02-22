@@ -1,0 +1,214 @@
+body{
+    margin: 0;
+    color:rgb(0, 0, 0);
+    font-family: sans-serif;
+}
+
+/*mainscreen*/
+.maincont{
+    display: block;
+    border: 1px solid black;
+    width: 30%;
+    height: 500px;
+    min-height: 30px;
+    margin-top: 60px;
+}
+.oponents{
+    width: 50px;
+}
+.gamedet{
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/*Game screen*/
+.gamecont{
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    width: 900px;
+    height: 700px;
+    top: 40%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    min-height: 30px;
+    margin-top: 60px;
+}
+.cards{
+    position: absolute;
+    top: 35%;
+    left: 25%;
+    border: 1px solid black;
+    width: 90px;
+    height: 120px;
+    cursor: pointer;
+}
+.floor{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 35%;
+    left: 47%;
+    border: 1px solid black;
+    width: 300px;
+    height: 120px;
+    padding-top:30px;
+}
+.player0{
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 1000px;
+    background-image: url("/Images/PlayerImages/PlayerPicture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.sum{
+    position: absolute;
+    bottom: 7%;
+    left: 57%;
+}
+.player0cards{
+    display: flex;
+    justify-content: center;
+    margin-top: 60%;
+}
+.card{
+    position:relative;
+    border: 1px solid black;
+    margin-right:7px;
+    height: 70px;
+    width: 60px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.card2{
+    position:relative;
+    border: 1px solid black;
+    margin-right:7px;
+    height: 30px;
+    width: 60px;
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    transition: all 0.3s;
+}
+.card3{
+    position:relative;
+    border: 1px solid black;
+    margin-right:5px;
+    height: 55px;
+    width: 42px;
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    transition: all 0.3s;
+}
+.player1{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 45%;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 1000px;
+    background-image: url("/Images/PlayerImages/PlayerPicture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+.player1cards{
+    position:absolute;
+    top: 40%;
+    left: 10%;
+}
+.player2{
+    display: none;
+    position: absolute;
+    left: 45%;
+    top:0;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 1000px;
+    background-image: url("/Images/PlayerImages/PlayerPicture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.player2cards{
+    position:absolute;
+    top: 13%;
+    left: 38%;
+}
+.player3{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45%;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 1000px;
+    background-image: url("/Images/PlayerImages/PlayerPicture.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.player3cards{
+    position:absolute;
+    top: 40%;
+    right: 10%;
+}
+
+/*buttons*/
+.startgame{
+    margin-top: 10px;
+    padding: 4px;
+    font-size: 19px;
+}
+.yanivbtn{
+    background-image: url('/Images/yanivbtn.png');
+    background-size: cover;
+    transform: rotate(15deg);
+    padding: 7px;
+    border-radius: 50px;
+    border: 1px solid black;
+    width: 70px;
+    height: 70px;
+    float: right;
+    margin-right: 200px;
+    cursor: pointer;
+    transition: 0s ease;
+}
+.yanivbtn:hover{
+    box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
+}
+.yanivbtn:active{
+    transition: 0;
+    border: 2px solid black;
+}
+.finishmsg{
+    display: none;
+    position:absolute;
+    left: 50%;
+    bottom:20%;
+    transform: translate(-50%,-20%);
+    border: 1px solid black;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+}

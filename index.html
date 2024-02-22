@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Yaniv's Game</title>
+</head>
+<body>
+    <center>
+    <div class="maincont" id="maincont">
+        <p class="msg" id="mainmsg">Yaniv</p>
+        <input class="name" id="username" type="text" placeholder="Player Name">
+        <br><span class="gamedet">Number of oponents:<span><br>
+        <select class="oponents" id="numoponents" name="oponents">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <br><span class="gamedet">Level:</span><br>
+        <input type="radio" id="beginner" name="Level" value="easy">beginner
+        <input type="radio" id="medium" name="Level" value="medium">medium
+        <input type="radio" id="hard" name="Level" value="hard">hard
+        <br><br>
+        <button class="startgamebtn" onclick="verify()">start</button>
+    </div>
+    </center>
+
+    <div class="gamecont" id="gamecont">
+        <div class="cards" onclick="packetCard()">deck</div>
+        <div class="floor" id="floor"></div>
+        <span class="player0" id="player0" style="font-size: 12px;">name1</span>
+        <span class="player1cards" id="pcards1"></span>
+        <span class="player2cards" id="pcards2"></span>
+        <span class="player3cards" id="pcards3"></span>
+        <span class="player0cards" id="pcards0"></span>
+        <button class="yanivbtn" onclick="yaniv()"></button>
+        <div class="finishmsg" id="fm"><center>round finish<br>
+            <button class="" onclick="start()">new game</button>
+        </center>
+        </div>
+        <p class="sum" id="summsg"></p>
+        <center>
+        <span class="player1" id="player1" style="font-size: 12px;">name2</span>
+        <span class="player2" id="player2" style="font-size: 12px;">name3</span>
+        <span class="player3" id="player3" style="font-size: 12px;">name4</span>
+        </center>
+    </div>
+    
+    <script src="js.js"></script>
+</body>
+</html>
