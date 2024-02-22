@@ -18,6 +18,7 @@ var sumplayer2 = 0;
 var sumplayer3 = 0;
 var arr;
 var floorcards = [];
+var firstgame = true;
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
@@ -47,6 +48,9 @@ function verify(){
     start();
 }
 function start(){
+    for(i = 0; i <= numoponents; i++){
+        document.getElementById('player'+(i)).style.boxShadow = 'none';
+    }
     document.getElementById('fm').style.display = "none";
     document.getElementById('maincont').style.display = "none";
     document.getElementById('gamecont').style.display = "block"
@@ -64,7 +68,6 @@ function start(){
     for(i = 1; i <= numoponents; i++){
         document.getElementById('player'+i).style.display = "inline-block";
     }
-    turn = 0;
     arr = [
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
         "3Y","3T","3L","3A", "4Y","4T","4L","4A",
@@ -126,6 +129,14 @@ function start(){
     sumplayer3 = 0
     for(i = 0; i < player3cards.length; i++){
         sumplayer3 += Number((cardNum(player3cards[i])));
+    }
+    if(firstgame == true){
+        turn = Math.floor(Math.random()*(numoponents));
+    }
+    console.log(turn);
+    document.getElementById('player'+(turn)).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
+    if(turn != 0){
+        Oponentplay();
     }
     console.log("player1:" + sumplayer1);
     console.log("player2:" + sumplayer2);
@@ -328,6 +339,8 @@ async function sleep(seconds){
 }
 async function Oponentplay(){
     if(turn == 1){
+        document.getElementById('player'+turn).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
+        document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
         await sleep(Math.floor(Math.random()*2 + 1));
         console.log('player1:' + player1cards);
         console.log('floor: ' + floorcards);
@@ -612,6 +625,8 @@ async function Oponentplay(){
         }
     }
     if(turn == 2){
+        document.getElementById('player'+turn).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
+        document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
         await sleep(Math.floor(Math.random()*2 + 1));
         console.log('player1:' + player1cards);
         console.log('floor: ' + floorcards);
@@ -894,6 +909,8 @@ async function Oponentplay(){
             }
         }
     }if(turn == 3){
+        document.getElementById('player'+turn).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
+        document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
         await sleep(Math.floor(Math.random()*2 + 1));
         console.log('player1:' + player1cards);
         console.log('floor: ' + floorcards);
@@ -1178,6 +1195,10 @@ async function Oponentplay(){
             
         }
     }
+    if(turn == 0){
+        document.getElementById('player'+(turn)).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
+        document.getElementById('player'+(numoponents)).style.boxShadow = 'none';
+    }
 }
 function oponentyaniv(){
     if(turn == 1){
@@ -1213,5 +1234,6 @@ function finish(startnext){
     sumplayer2 = 0;
     sumplayer3 = 0;
     arr = [];
+    firstgame = false;
     floorcards = [];
 }
