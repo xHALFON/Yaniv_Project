@@ -69,6 +69,28 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+.player0msg{
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    left: 55%;
+}
+.player0score{
+    display: none;
+    position: absolute;
+    bottom: 3.8%;
+    left: 44.6%;
+    border-radius: 50%;
+    padding: 3px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: cursive;
+    background-color: white;
+    width: 17px;
+    height: 17px;
+    justify-content: center;
+    align-items: center;
+}
 .sum{
     position: absolute;
     bottom: 7%;
@@ -114,7 +136,7 @@ body{
 .player1{
     display: none;
     position: absolute;
-    left: 0;
+    left: 1%;
     top: 45%;
     align-items: center;
     width: 70px;
@@ -127,10 +149,34 @@ body{
     background-repeat: no-repeat;
 
 }
+.player1msg{
+    display: none;
+    position: absolute;
+    left: 2.3%;
+    top: 42%;
+}
+.player1score{
+    display: none;
+    position: absolute;
+    left: 0.5%;
+    top: 49%;
+    border-radius: 50%;
+    padding: 3px;
+    padding-top:4px;
+    padding-right: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: cursive;
+    background-color: white;
+    width: 17px;
+    height: 17px;
+    justify-content: center;
+    align-items: center;
+}
 .player1cards{
     position:absolute;
     top: 40%;
-    left: 10%;
+    left: 11%;
 }
 .player2{
     display: none;
@@ -147,6 +193,30 @@ body{
     background-repeat: no-repeat;
     
 }
+.player2msg{
+    display: block;
+    position: absolute;
+    left: 55%;
+    top:5%;
+}
+.player2score{
+    display: none;
+    position: absolute;
+    left: 44.6%;
+    top:4.2%;
+    border-radius: 50%;
+    padding: 3px;
+    padding-top:4px;
+    padding-right: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: cursive;
+    background-color: white;
+    width: 17px;
+    height: 17px;
+    justify-content: center;
+    align-items: center;
+}
 .player2cards{
     position:absolute;
     top: 13%;
@@ -155,7 +225,7 @@ body{
 .player3{
     display: none;
     position: absolute;
-    right: 0;
+    right: 1%;
     top: 45%;
     justify-content: center;
     width: 70px;
@@ -167,10 +237,45 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+.player3msg{
+    display: block;
+    position: absolute;
+    right: 3.3%;
+    top: 57%;
+}
+.player3score{
+    display: none;
+    position: absolute;
+    right: 0.5%;
+    top: 49%;
+    border-radius: 50%;
+    padding: 3px;
+    padding-top:4px;
+    padding-right: 4px;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: cursive;
+    background-color: white;
+    width: 17px;
+    height: 17px;
+    justify-content: center;
+    align-items: center;
+}
 .player3cards{
     position:absolute;
     top: 40%;
     right: 10%;
+}
+.finishscreen{
+    display: none;
+    position:absolute;
+    left: 50%;
+    bottom:20%;
+    transform: translate(-50%,-20%);
+    border: 1px solid black;
+    width: 350px;
+    height: 350px;
+    background-color: white;
 }
 
 /*buttons*/
@@ -186,6 +291,7 @@ body{
     padding: 7px;
     border-radius: 50px;
     border: 1px solid black;
+    color: rgb(248, 232, 0);
     width: 70px;
     height: 70px;
     float: right;
@@ -200,14 +306,9 @@ body{
     transition: 0;
     border: 2px solid black;
 }
-.finishmsg{
+.newrndbtn{
     display: none;
-    position:absolute;
-    left: 50%;
-    bottom:20%;
-    transform: translate(-50%,-20%);
-    border: 1px solid black;
-    width: 350px;
-    height: 350px;
-    background-color: white;
+}
+.quitgamebtn{
+    display: none;
 }
