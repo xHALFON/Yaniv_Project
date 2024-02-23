@@ -23,9 +23,9 @@ var scoreplayer3 = 0;
 var arr;
 var floorcards = [];
 var round = 1;
-var player1out = 0;
-var player2out = 0;
-var player3out = 0;
+var player1out = 1;
+var player2out = 1;
+var player3out = 1;
 var allowtostart = 0;
 function verify(){
     playername = document.getElementById('username').value;
@@ -60,11 +60,32 @@ function start(){
     if(allowtostart != 1){
         return;
     }
+    if(round == 1){
+        for(i = 0; i <= numoponents; i++){
+            switch(i){
+                case 0:
+                    player1out = 0;
+                    continue;
+                case 1:
+                    player2out = 0;
+                    continue;
+                case 2:
+                    player3out = 0;
+                    continue;
+            }
+            document.getElementById('pcards'+i).style.display = 'block';
+        }
+    }
     for(i = 0; i <= numoponents; i++){
         document.getElementById('player'+(i)).style.boxShadow = 'none';
         document.getElementById(`player${i}msg`).style.display = 'none';
         document.getElementById(`player${i}score`).style.display = 'flex';
     }
+    fmsg = document.getElementById('fmsg').style.color = "black";
+    document.getElementById(`player0score`).innerHTML = scoreplayer0;
+    document.getElementById(`player1score`).innerHTML = scoreplayer1;
+    document.getElementById(`player2score`).innerHTML = scoreplayer2;
+    document.getElementById(`player3score`).innerHTML = scoreplayer3;
     document.getElementById('quitgamebtn').style.display = "none";
     document.getElementById('newrndbtn').style.display = "none";
     document.getElementById('fs').style.display = "none";
@@ -84,23 +105,22 @@ function start(){
     for(i = 1; i <= numoponents; i++){
         document.getElementById('player'+i).style.display = "inline-block";
     }
-    if(scoreplayer1 >= 100){
-        player1out = 1;
-        document.getElementById('player1').style.display = 'none';
-        document.getElementById('pcards1').style.display = 'none';
-        document.getElementById('player1score').style.display = 'none';
-    }
-    if(scoreplayer2 >= 100){
-        player2out = 1;
-        document.getElementById('player2').style.display = 'none';
-        document.getElementById('pcards2').style.display = 'none';
-        document.getElementById('player2score').style.display = 'none';
-    }
-    if(scoreplayer3 >= 100){
-        player3out = 1;
-        document.getElementById('player3').style.display = 'none';
-        document.getElementById('pcards3').style.display = 'none';
-        document.getElementById('player3score').style.display = 'none';
+    if(round != 1){
+        if(player1out == 1){
+            document.getElementById('player1').style.display = 'none';
+            document.getElementById('pcards1').style.display = 'none';
+            document.getElementById('player1score').style.display = 'none';
+        }
+        if(player2out == 1){
+            document.getElementById('player2').style.display = 'none';
+            document.getElementById('pcards2').style.display = 'none';
+            document.getElementById('player2score').style.display = 'none';
+        }
+        if(player3out == 1){
+            document.getElementById('player3').style.display = 'none';
+            document.getElementById('pcards3').style.display = 'none';
+            document.getElementById('player3score').style.display = 'none';
+        }
     }
     arr = ["0Y","0T","0L","0A",
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
@@ -164,6 +184,7 @@ function start(){
     console.log("player2:" + sumplayer2);
     console.log("player3:" + sumplayer3);
     console.log('floor cards:' + floorcards);
+    chosenCard = [];
 }
 
 function updateSum(){
@@ -357,6 +378,7 @@ async function sleep(seconds){
 async function Oponentplay(){
     if(turn == 1){
         if(player1out == 1){
+            document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
             turn+=1;
             if(numoponents < turn){
                 turn = 0;
@@ -650,6 +672,7 @@ async function Oponentplay(){
     }
     if(turn == 2){
         if(player2out == 1){
+            document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
             turn+=1;
             if(numoponents < turn){
                 turn = 0;
@@ -943,6 +966,7 @@ async function Oponentplay(){
     }
     if(turn == 3){
         if(player3out == 1){
+            document.getElementById('player'+(turn-1)).style.boxShadow = 'none';
             turn+=1;
             if(numoponents < turn){
                 turn = 0;
@@ -1435,7 +1459,20 @@ function finish(winner){
     fs = document.getElementById('fs');
     fs.style.display = "block";
     fmsg = document.getElementById('fmsg');
-    if(scoreplayer1 >= 100 && scoreplayer2 >= 100 && scoreplayer3 >= 100){
+    console.log(scoreplayer1);
+    console.log(scoreplayer2);
+    console.log(scoreplayer3);
+    if(scoreplayer1 >= 100){
+        console.log('dsa');
+        player1out = 1;
+    }
+    if(scoreplayer2 >= 100){
+        player2out = 1;
+    }
+    if(scoreplayer3 >= 100){
+        player3out = 1;
+    }
+    if(player1out == 1 && player2out == 1 && player3out == 1){
         fmsg.innerHTML = "You Win<br>Round: " + round;
         fmsg.style.color = "green";
         fmsg.style.fontWeight = "800";
@@ -1491,9 +1528,9 @@ function quitGame(){
     scoreplayer1 = 0;
     scoreplayer2 = 0;
     scoreplayer3 = 0;
-    player1out = 0;
-    player2out = 0;
-    player3out = 0;
+    player1out = 1;
+    player2out = 1;
+    player3out = 1;
     arr;
     floorcards = [];
     round = 1;
