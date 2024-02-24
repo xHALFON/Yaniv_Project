@@ -285,26 +285,20 @@ body{
     font-size: 19px;
 }
 .yanivbtn{
-    background-image: url('./Images/yanivbtn.png');
+    background-image: url('./Images/yanivbtndis.png');
     background-size: cover;
     transform: rotate(15deg);
     padding: 7px;
     border-radius: 50px;
     border: 1px solid black;
-    color: rgb(248, 232, 0);
     width: 70px;
     height: 70px;
     float: right;
     margin-right: 200px;
-    cursor: pointer;
     transition: 0s ease;
 }
 .yanivbtn:hover{
     box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
-}
-.yanivbtn:active{
-    transition: 0;
-    border: 2px solid black;
 }
 .newrndbtn{
     display: none;

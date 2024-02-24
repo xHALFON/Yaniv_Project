@@ -60,6 +60,7 @@ function start(){
     if(allowtostart != 1){
         return;
     }
+
     if(round == 1){
         for(i = 0; i <= numoponents; i++){
             switch(i){
@@ -76,11 +77,13 @@ function start(){
             document.getElementById('pcards'+i).style.display = 'block';
         }
     }
+
     for(i = 0; i <= numoponents; i++){
         document.getElementById('player'+(i)).style.boxShadow = 'none';
         document.getElementById(`player${i}msg`).style.display = 'none';
         document.getElementById(`player${i}score`).style.display = 'flex';
     }
+
     fmsg = document.getElementById('fmsg').style.color = "black";
     document.getElementById(`player0score`).innerHTML = scoreplayer0;
     document.getElementById(`player1score`).innerHTML = scoreplayer1;
@@ -91,6 +94,11 @@ function start(){
     document.getElementById('fs').style.display = "none";
     document.getElementById('maincont').style.display = "none";
     document.getElementById('gamecont').style.display = "block"
+    document.getElementById('yanivbtn').disabled = true;
+    document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+    document.getElementById('yanivbtn').style.cursor = 'default';
+    document.getElementById('yanivbtn').style.border = "none";
+
     for(i = 0; i <= numoponents; i++){
         var pc = document.getElementById('pcards'+i);
         console.log('pcards'+i);
@@ -102,9 +110,11 @@ function start(){
     while (fc.firstChild) {
         fc.removeChild(fc.firstChild);
     }
+
     for(i = 1; i <= numoponents; i++){
         document.getElementById('player'+i).style.display = "inline-block";
     }
+
     if(round != 1){
         if(player1out == 1){
             document.getElementById('player1').style.display = 'none';
@@ -122,6 +132,7 @@ function start(){
             document.getElementById('player3score').style.display = 'none';
         }
     }
+
     arr = ["0Y","0T","0L","0A",
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
         "3Y","3T","3L","3A", "4Y","4T","4L","4A",
@@ -167,15 +178,16 @@ function start(){
             arr.splice(x,1);
         }
     }
+    
     sumplayer0 = sumId(player0cards);
     document.getElementById('summsg').innerHTML = sumplayer0;
     sumplayer1 = sumId(player1cards);
     sumplayer2 = sumId(player2cards);
     sumplayer3 = sumId(player3cards);
-    if(round == 1){
+
+    if(round == 1){ // random player start the first turn on round 1
         turn = Math.floor(Math.random()*(numoponents));
     }
-    console.log(turn);
     document.getElementById('player'+(turn)).style.boxShadow = 'inset -5em -3em 3em rgb(0 200 0 / 30%),0em 0em 1em rgba(0, 0, 0, 0.6)';
     if(turn != 0){
         Oponentplay();
@@ -186,11 +198,28 @@ function start(){
     console.log('floor cards:' + floorcards);
     chosenCard = [];
 }
-
+function o(){
+    document.getElementById('yanivbtn').style.border = "2px solid black";
+}
+function u(){
+    document.getElementById('yanivbtn').style.border = "1px solid black";
+}
 function updateSum(){
     if(turn == 0){
         sumplayer0 = sumId(player0cards);
         document.getElementById('summsg').innerHTML = sumplayer0;
+        if(sumplayer0 <= 7){
+            var yanivbtn = document.getElementById('yanivbtn');
+            yanivbtn.disabled = false;
+            yanivbtn.style.backgroundImage = "url('./Images/yanivbtn.png')"
+            yanivbtn.style.cursor = 'pointer';
+            yanivbtn.style.border = "1px solid black";
+        }else{
+            document.getElementById('yanivbtn').disabled = true;
+            document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+            document.getElementById('yanivbtn').style.cursor = 'default';
+            document.getElementById('yanivbtn').style.border = "none";
+        }
     }else if(turn == 1){
         sumplayer1 = sumId(player1cards);
     }else if(turn == 2){
@@ -1360,6 +1389,10 @@ function oponentyaniv(){
 function yaniv(){
     if(turn == 0){
         if(sumplayer0 <= 7){
+            document.getElementById('yanivbtn').disabled = true;
+            document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+            document.getElementById('yanivbtn').style.cursor = "default";
+            document.getElementById('yanivbtn').style.border = "none";
             document.getElementById(`player0msg`).style.display = 'block';
             document.getElementById(`player0msg`).innerHTML = 'YANIV';
             document.getElementById(`player0msg`).style.color = 'rgb(248, 232, 0)';
