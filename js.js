@@ -27,6 +27,10 @@ var player1out = 1;
 var player2out = 1;
 var player3out = 1;
 var allowtostart = 0;
+var Intreval0;
+var Intreval1;
+var Intreval2;
+var Intreval3;
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
@@ -60,9 +64,12 @@ function start(){
     if(allowtostart != 1){
         return;
     }
-
+    clearInterval(Intreval0);
+    clearInterval(Intreval1);
+    clearInterval(Intreval2);
+    clearInterval(Intreval3);
     if(round == 1){
-        for(i = 0; i <= numoponents; i++){
+        for(i = 0; i < numoponents; i++){
             switch(i){
                 case 0:
                     player1out = 0;
@@ -84,11 +91,11 @@ function start(){
         document.getElementById(`player${i}score`).style.display = 'flex';
     }
 
-    fmsg = document.getElementById('fmsg').style.color = "black";
     document.getElementById(`player0score`).innerHTML = scoreplayer0;
     document.getElementById(`player1score`).innerHTML = scoreplayer1;
     document.getElementById(`player2score`).innerHTML = scoreplayer2;
     document.getElementById(`player3score`).innerHTML = scoreplayer3;
+    fmsg = document.getElementById('fmsg').style.color = "black";
     document.getElementById('quitgamebtn').style.display = "none";
     document.getElementById('newrndbtn').style.display = "none";
     document.getElementById('fs').style.display = "none";
@@ -113,6 +120,7 @@ function start(){
 
     for(i = 1; i <= numoponents; i++){
         document.getElementById('player'+i).style.display = "inline-block";
+        document.getElementById('pcards'+i).style.display = 'block';
     }
 
     if(round != 1){
@@ -1424,17 +1432,23 @@ function updateScore(winner){
         if(winner != 0 && scoreplayer0 != (score0 + sumplayer0)){
             scoreplayer0 += 1;
         }
-        if(winner != 1 && scoreplayer1 != (score1 + sumplayer1)){
-            scoreplayer1 += 1;
+        if(player1out == 0){
+            if(winner != 1 && scoreplayer1 != (score1 + sumplayer1)){
+                scoreplayer1 += 1;
+            }
         }
-        if(winner != 2 && scoreplayer2 != (score2 + sumplayer2)){
-            scoreplayer2 += 1;
+        if(player2out == 0){
+            if(winner != 2 && scoreplayer2 != (score2 + sumplayer2)){
+                scoreplayer2 += 1;
+            }
         }
-        if(winner != 3 && scoreplayer3 != (score3 + sumplayer3)){
-            scoreplayer3 += 1;
+        if(player3out == 0){
+            if(winner != 3 && scoreplayer3 != (score3 + sumplayer3)){
+                scoreplayer3 += 1;
+            }   
         }
     }
-    var Intreval0 = setInterval(() => { // draw score
+    Intreval0 = setInterval(() => { // draw score
         if(winner != 0){
             dscore0 += 1;
             p0.innerHTML = dscore0;
@@ -1446,42 +1460,48 @@ function updateScore(winner){
         }
         }
     },150);
-    var Intreval1 = setInterval(() => {
-        if(winner != 1){
-            dscore1 += 1;
-            p1.innerHTML = dscore1;
-            if(dscore1 === (score1+sum1)){
+    if(player1out == 0){
+        Intreval1 = setInterval(() => {
+            if(winner != 1){
+                dscore1 += 1;
+                p1.innerHTML = dscore1;
+                if(dscore1 === (score1+sum1)){
+                    clearInterval(Intreval1);
+                }
+            }
+            if(winner == 1){
                 clearInterval(Intreval1);
             }
-        }
-        if(winner == 1){
-            clearInterval(Intreval1);
-        }
-    },150);
-    var Intreval2 = setInterval(() => {
-        if(winner != 2){
-            dscore2 += 1;
-            p2.innerHTML = dscore2;
-            if(dscore2 === (score2+sum2)){
+        },150);
+    }
+    if(player2out == 0){
+        Intreval2 = setInterval(() => {
+            if(winner != 2){
+                dscore2 += 1;
+                p2.innerHTML = dscore2;
+                if(dscore2 === (score2+sum2)){
+                    clearInterval(Intreval2);
+                }
+            }
+            if(winner == 2){
                 clearInterval(Intreval2);
             }
-        }
-        if(winner == 2){
-            clearInterval(Intreval2);
-        }
-    },150);
-    var Intreval3 = setInterval(() => {
-        if(winner != 3){
-            dscore3 += 1;
-            p3.innerHTML = dscore3;
-            if(dscore3 === (score3+sum3)){
+        },150);
+    }
+    if(player3out == 0){
+        Intreval3 = setInterval(() => {
+            if(winner != 3){
+                dscore3 += 1;
+                p3.innerHTML = dscore3;
+                if(dscore3 === (score3+sum3)){
+                    clearInterval(Intreval3);
+                }
+            }
+            if(winner == 3){
                 clearInterval(Intreval3);
             }
-        }
-        if(winner == 3){
-            clearInterval(Intreval3);
-        }
-    },150);
+        },150);
+    }
 }
 function finish(winner){
     updateScore(winner);
@@ -1534,17 +1554,22 @@ function finish(winner){
     firstgame = false;
     floorcards = [];
 }
-
-function quitGame(){
+async function quitGame(){
     document.getElementById('maincont').style.display = "block";
     document.getElementById('gamecont').style.display = "none";
     document.getElementById('fs').style.display = "none";
+    for(i = 1; i < 4; i++){
+        document.getElementById('player'+i).style.display = "none";
+        document.getElementById('pcards'+i).style.display = "none";
+        document.getElementById(`player${i}score`).style.display = "none";
+    }
+    round = 1;
     level = 0;
     playername;
     playercards;
     numoponents;
     massage;
-    turn;
+    turn = 0;
     beg;
     hard;
     med;
@@ -1566,6 +1591,5 @@ function quitGame(){
     player3out = 1;
     arr;
     floorcards = [];
-    round = 1;
     allowtostart = 0;
 }
