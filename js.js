@@ -141,7 +141,7 @@ function start(){
         }
     }
 
-    arr = ["0Y","0T","0L","0A",
+    arr = ["0L","0A",
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
         "3Y","3T","3L","3A", "4Y","4T","4L","4A",
         "5Y","5T","5L","5A", "6Y","6T","6L","6A",
@@ -158,7 +158,7 @@ function start(){
     floorcards.push(arr[x]);
     arr.splice(x,1);
     var pcards = document.getElementById('pcards0');
-    for(i = 0; i < 4; i++){
+    for(i = 0; i < 5; i++){
         x = Math.floor(Math.random()*arr.length);
         cardi = pcards.appendChild(document.createElement("span"));
         cardi.setAttribute("class", "card");
@@ -169,7 +169,7 @@ function start(){
         arr.splice(x,1);
     }
     for(i = 0; i < numoponents; i++){
-        for(j = 0; j < 4; j++){
+        for(j = 0; j < 5; j++){
             pcards = document.getElementById('pcards'+(i+1));
             x = Math.floor(Math.random()*arr.length);
             cardi = pcards.appendChild(document.createElement("span"));

@@ -6,12 +6,22 @@ body{
 
 /*mainscreen*/
 .maincont{
+    position: relative;
     display: block;
     border: 1px solid black;
-    width: 30%;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     min-height: 30px;
     margin-top: 60px;
+    background-image: url('./Images/s4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mainmsg{
+    position: absolute;
+    top: 217px;
+    left: 80px;
+    font-size: 15px;
 }
 .oponents{
     width: 50px;
@@ -21,7 +31,57 @@ body{
     margin-top: 4px;
     margin-bottom: 4px;
 }
-
+.imgboard1{
+    position:absolute;
+    bottom: 3%;
+    right:2%;
+}
+.imgboard2{
+    position:absolute;
+    bottom: 15%;
+    right:2%;
+}
+.imgboard3{
+    position:absolute;
+    bottom: 27%;
+    right:2%;
+}
+.detailscont{
+    position: absolute;
+    top: 90px;
+    left: 70px;
+}
+.detailimg{
+    position: absolute;
+    left: 0;
+    top: -4px;
+}
+.name{
+    color: white;
+}
+input.normal{
+    background-color: transparent;
+    color:rgb(0, 0, 0);
+    font-size: 17px;
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 150px;
+    float: left;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.281);
+}
+input.normal::placeholder{
+    color: rgb(48, 48, 48);
+    font-size: 15px;
+}
+.oponents{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 35px;
+    margin-bottom: 7px;
+}
 /*Game screen*/
 .gamecont{
     display: none;
@@ -278,10 +338,59 @@ body{
     background-color: white;
 }
 /*buttons*/
-.startgame{
-    margin-top: 10px;
-    padding: 4px;
-    font-size: 19px;
+.startgamebtn{
+    position: absolute;
+    bottom: 6%;
+    right: 5.5%;
+    cursor: pointer;
+    font-size: 25px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+}
+.startgamebtn:hover{
+    color: white;
+}
+.startgamebtn:active{
+    color: rgb(214, 214, 214);
+}
+.optionsbtn{
+    position: absolute;
+    bottom: 18.1%;
+    right: 8%;
+    cursor: pointer;
+    font-size: 25px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+}
+.optionsbtn:hover{
+    color: white;
+}
+.optionsbtn:active{
+    color: rgb(214, 214, 214);
+}
+.leadbtn{
+    position: absolute;
+    bottom: 30%;
+    right: 4.6%;
+    cursor: pointer;
+    font-size: 25px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+}
+.leadbtn:hover{
+    color: white;
+}
+.leadbtn:active{
+    color: rgb(214, 214, 214);
 }
 .yanivbtn{
     background-image: url('./Images/yanivbtndis.png');

@@ -9,20 +9,27 @@
 <body>
     <center>
     <div class="maincont" id="maincont">
-        <p class="msg" id="mainmsg">Yaniv</p>
-        <input class="name" id="username" type="text" placeholder="Player Name">
-        <br><span class="gamedet">Number of oponents:<span><br>
-        <select class="oponents" id="numoponents" name="oponents">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <br><span class="gamedet">Level:</span><br>
-        <input type="radio" id="beginner" name="Level" value="easy">beginner
-        <input type="radio" id="medium" name="Level" value="medium">medium
-        <input type="radio" id="hard" name="Level" value="hard">hard
-        <br><br>
-        <button class="startgamebtn" onclick="verify()">start</button>
+        <div class="imgboard1" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
+        <div class="imgboard2" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
+        <button class="optionsbtn">Options</button>
+        <div class="imgboard3" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
+        <button class="leadbtn">Leaderboard</button>
+        <img src="./Images/board2.png" width="400px" class="detailimg">
+        <p class="mainmsg" id="mainmsg"></p>
+        <div class="detailscont">
+            <input class="normal" id="username" type="text" placeholder="Player Name"><br><br>
+            <span class="gamedet">Oponents:<span>
+            <select class="oponents" id="numoponents" name="oponents">
+                <option class="options" value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br><span class="gamedet">Level:</span><br>
+            <input type="radio" id="beginner" name="Level" value="easy">Easy
+            <input type="radio" id="medium" name="Level" value="medium">Medium
+            <input type="radio" id="hard" name="Level" value="hard">Hard
+        </div>
+        <button class="startgamebtn" onclick="verify()">Start Game</button>
     </div>
     </center>
 
