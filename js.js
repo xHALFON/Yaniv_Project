@@ -156,7 +156,8 @@ function start(){
     floorcard.setAttribute("class", "card");
     floorcard.setAttribute("id", arr[x]);
     floorcard.setAttribute("onclick", "switchcard(this)");
-    floorcard.innerHTML = arr[x];
+    floorcard.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
+    floorcard.style.backgroundSize = "cover";
     floorcards.push(arr[x]);
     arr.splice(x,1);
     var pcards = document.getElementById('pcards0');
@@ -166,7 +167,8 @@ function start(){
         cardi.setAttribute("class", "card");
         cardi.setAttribute("id", arr[x]);
         cardi.setAttribute("onclick", "pickCard(this)");
-        cardi.innerHTML = arr[x];
+        cardi.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
+        cardi.style.backgroundSize = "cover";
         player0cards.push(arr[x]);
         arr.splice(x,1);
     }
@@ -177,7 +179,13 @@ function start(){
             cardi = pcards.appendChild(document.createElement("span"));
             cardi.setAttribute("class", i==1?'card3':'card2');
             cardi.setAttribute("id", arr[x]);
-            cardi.innerHTML = arr[x];
+            if(i == 1){
+            cardi.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
+            cardi.style.backgroundSize = "cover";
+            }else{
+            cardi.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
+            cardi.style.backgroundSize = "cover";
+            }
             if(i == 0){
                 player1cards.push(arr[x]);
             }else if(i == 1){
@@ -325,7 +333,7 @@ function packetCard(){
             nfc.setAttribute('class', 'card');
             nfc.setAttribute('id', chosenCard[i].id);
             nfc.setAttribute('onclick', 'switchcard(this)')
-            nfc.innerHTML = chosenCard[i].id;
+            nfc.style.backgroundImage = `url('./Images/cards/${chosenCard[i].id}.jpg')`;
             floorcards.push(chosenCard[i].id);
         }
         for(i = 0; i < player0cards.length; i++){
@@ -346,7 +354,7 @@ function packetCard(){
             npc.setAttribute('class', 'card');
             npc.setAttribute('id', player0cards[i]);
             npc.setAttribute('onclick', 'pickCard(this)');
-            npc.innerHTML = player0cards[i];
+            npc.style.backgroundImage = `url('./Images/cards/${player0cards[i]}.jpg')`;
         }
         var x = Math.floor(Math.random()*arr.length);
         var pcards = document.getElementById('pcards0');
@@ -354,7 +362,7 @@ function packetCard(){
         cardi.setAttribute("class", "card");
         cardi.setAttribute("id", arr[x]);
         cardi.setAttribute("onclick", "pickCard(this)");
-        cardi.innerHTML = arr[x];
+        cardi.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`
         player0cards.push(arr[x])
         updateSum();
         arr.splice(x,1);
@@ -386,7 +394,7 @@ function switchcard(card){
         newdeckcard.setAttribute('class', 'card');
         newdeckcard.setAttribute('id', card.id);
         newdeckcard.setAttribute('onclick', 'pickCard(this)');
-        newdeckcard.innerHTML = card.id;
+        newdeckcard.style.backgroundImage = `url('./Images/cards/${card.id}.jpg')`;
         var floors = document.getElementById('floor');
         while (floors.firstChild) {
             floors.removeChild(floors.firstChild);
@@ -397,7 +405,7 @@ function switchcard(card){
             newfloorcard.setAttribute('class', 'card');
             newfloorcard.setAttribute('id', chosenCard[i].id);
             newfloorcard.setAttribute('onclick', 'switchcard(this)');
-            newfloorcard.innerHTML = chosenCard[i].id;
+            newfloorcard.style.backgroundImage = `url('./Images/cards/${chosenCard[i].id}.jpg')`;
             floorcards.push(chosenCard[i].id);
         }
         chosenCard = [];
@@ -543,7 +551,7 @@ async function Oponentplay(){
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
                             fc.setAttribute('onclick', 'switchcard(this)');
-                            fc.innerHTML = combo[i];
+                            fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
                         floorcards = [];
                         for(i = 0; i < combo.length; i++){
@@ -564,13 +572,13 @@ async function Oponentplay(){
                             var nc = playerdeck.appendChild(document.createElement('span'));
                             nc.setAttribute('class', 'card2')
                             nc.setAttribute('id', player1cards[i])
-                            nc.innerHTML = player1cards[i];
+                            nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card2");
                         nc.setAttribute("id", arr[x]);
-                        nc.innerHTML = arr[x];
+                        nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                         player1cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
@@ -602,7 +610,7 @@ async function Oponentplay(){
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
                         fc.setAttribute('onclick', 'switchcard(this)');
-                        fc.innerHTML = combo[i];
+                        fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
                     for(i = 0; i < floorcards.length; i++){
                         if(minfloor == cardNum(floorcards[i])){
@@ -629,7 +637,7 @@ async function Oponentplay(){
                     var nc = playerdeck.appendChild(document.createElement('span'));
                     nc.setAttribute('class', 'card2')
                     nc.setAttribute('id', player1cards[i])
-                    nc.innerHTML = player1cards[i];
+                    nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player1cards);
@@ -679,7 +687,7 @@ async function Oponentplay(){
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
                     fc.setAttribute('onclick', 'switchcard(this)');
-                    fc.innerHTML = maxhandId;
+                    fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
                     while (playerdeck.firstChild) {
                         playerdeck.removeChild(playerdeck.firstChild);
@@ -689,7 +697,7 @@ async function Oponentplay(){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card2');
                         nc.setAttribute('id', player1cards[i]);
-                        nc.innerHTML = player1cards[i];
+                        nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player1cards);
@@ -722,7 +730,7 @@ async function Oponentplay(){
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
                     nfc.setAttribute('onclick', 'switchcard(this)')
-                    nfc.innerHTML = maxhandId;
+                    nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
 
                     for(i = 0; i < player1cards.length; i++){
@@ -739,14 +747,14 @@ async function Oponentplay(){
                         npc.setAttribute('class', 'card2');
                         npc.setAttribute('id', player1cards[i]);
                         npc.setAttribute('onclick', 'pickCard(this)');
-                        npc.innerHTML = player1cards[i];
+                        npc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                     }
                     var x = Math.floor(Math.random()*arr.length);
                     var pcards = document.getElementById('pcards1');
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card2");
                     nc.setAttribute("id", arr[x]);
-                    nc.innerHTML = arr[x];
+                    nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                     player1cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();
@@ -837,7 +845,7 @@ async function Oponentplay(){
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
                             fc.setAttribute('onclick', 'switchcard(this)');
-                            fc.innerHTML = combo[i];
+                            fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
                         floorcards = [];
                         for(i = 0; i < combo.length; i++){
@@ -858,13 +866,13 @@ async function Oponentplay(){
                             var nc = playerdeck.appendChild(document.createElement('span'));
                             nc.setAttribute('class', 'card3')
                             nc.setAttribute('id', player2cards[i])
-                            nc.innerHTML = player2cards[i];
+                            nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card3");
                         nc.setAttribute("id", arr[x]);
-                        nc.innerHTML = arr[x];
+                        nc.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
                         player2cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
@@ -896,7 +904,7 @@ async function Oponentplay(){
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
                         fc.setAttribute('onclick', 'switchcard(this)');
-                        fc.innerHTML = combo[i];
+                        fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
                     for(i = 0; i < floorcards.length; i++){
                         if(minfloor == cardNum(floorcards[i])){
@@ -923,7 +931,7 @@ async function Oponentplay(){
                     var nc = playerdeck.appendChild(document.createElement('span'));
                     nc.setAttribute('class', 'card3')
                     nc.setAttribute('id', player2cards[i])
-                    nc.innerHTML = player2cards[i];
+                    nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player2cards);
@@ -973,7 +981,7 @@ async function Oponentplay(){
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
                     fc.setAttribute('onclick', 'switchcard(this)');
-                    fc.innerHTML = maxhandId;
+                    fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
                     while (playerdeck.firstChild) {
                         playerdeck.removeChild(playerdeck.firstChild);
@@ -983,7 +991,7 @@ async function Oponentplay(){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card3');
                         nc.setAttribute('id', player2cards[i]);
-                        nc.innerHTML = player2cards[i];
+                        nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player2cards);
@@ -1016,7 +1024,7 @@ async function Oponentplay(){
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
                     nfc.setAttribute('onclick', 'switchcard(this)')
-                    nfc.innerHTML = maxhandId;
+                    nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
 
                     for(i = 0; i < player2cards.length; i++){
@@ -1033,14 +1041,14 @@ async function Oponentplay(){
                         npc.setAttribute('class', 'card3');
                         npc.setAttribute('id', player2cards[i]);
                         npc.setAttribute('onclick', 'pickCard(this)');
-                        npc.innerHTML = player2cards[i];
+                        npc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                     }
                     var x = Math.floor(Math.random()*arr.length);
                     var pcards = document.getElementById('pcards2');
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card3");
                     nc.setAttribute("id", arr[x]);
-                    nc.innerHTML = arr[x];
+                    nc.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
                     player2cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();
@@ -1131,7 +1139,7 @@ async function Oponentplay(){
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
                             fc.setAttribute('onclick', 'switchcard(this)');
-                            fc.innerHTML = combo[i];
+                            fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
                         floorcards = [];
                         for(i = 0; i < combo.length; i++){
@@ -1152,13 +1160,13 @@ async function Oponentplay(){
                             var nc = playerdeck.appendChild(document.createElement('span'));
                             nc.setAttribute('class', 'card2')
                             nc.setAttribute('id', player3cards[i])
-                            nc.innerHTML = player3cards[i];
+                            nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card2");
                         nc.setAttribute("id", arr[x]);
-                        nc.innerHTML = arr[x];
+                        nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                         player3cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
@@ -1190,7 +1198,7 @@ async function Oponentplay(){
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
                         fc.setAttribute('onclick', 'switchcard(this)');
-                        fc.innerHTML = combo[i];
+                        fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
                     for(i = 0; i < floorcards.length; i++){
                         if(minfloor == cardNum(floorcards[i])){
@@ -1217,7 +1225,7 @@ async function Oponentplay(){
                     var nc = playerdeck.appendChild(document.createElement('span'));
                     nc.setAttribute('class', 'card2')
                     nc.setAttribute('id', player3cards[i])
-                    nc.innerHTML = player3cards[i];
+                    nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player3cards);
@@ -1267,7 +1275,7 @@ async function Oponentplay(){
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
                     fc.setAttribute('onclick', 'switchcard(this)');
-                    fc.innerHTML = maxhandId;
+                    fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
                     while (playerdeck.firstChild) {
                         playerdeck.removeChild(playerdeck.firstChild);
@@ -1277,7 +1285,7 @@ async function Oponentplay(){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card2');
                         nc.setAttribute('id', player3cards[i]);
-                        nc.innerHTML = player3cards[i];
+                        nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
                     console.log(player3cards);
@@ -1310,7 +1318,7 @@ async function Oponentplay(){
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
                     nfc.setAttribute('onclick', 'switchcard(this)')
-                    nfc.innerHTML = maxhandId;
+                    nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
 
                     for(i = 0; i < player3cards.length; i++){
@@ -1327,14 +1335,14 @@ async function Oponentplay(){
                         npc.setAttribute('class', 'card2');
                         npc.setAttribute('id', player3cards[i]);
                         npc.setAttribute('onclick', 'pickCard(this)');
-                        npc.innerHTML = player3cards[i];
+                        npc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                     }
                     var x = Math.floor(Math.random()*arr.length);
                     var pcards = document.getElementById('pcards3');
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card2");
                     nc.setAttribute("id", arr[x]);
-                    nc.innerHTML = arr[x];
+                    nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                     player3cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();

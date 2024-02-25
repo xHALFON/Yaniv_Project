@@ -86,6 +86,9 @@ input.normal::placeholder{
 .gamecont{
     display: none;
     position: absolute;
+    background-image: url('./Images/s5.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
     border: 1px solid black;
     width: 900px;
     height: 700px;
@@ -99,10 +102,15 @@ input.normal::placeholder{
     position: absolute;
     top: 35%;
     left: 25%;
+    background-image: url('./Images/cards/backcard.jpg');
+    background-size: cover;
     border: 1px solid black;
     width: 90px;
-    height: 120px;
+    height: 132px;
     cursor: pointer;
+}
+.cards:active{
+    border: none;
 }
 .floor{
     position: absolute;
@@ -161,24 +169,27 @@ input.normal::placeholder{
 .player0cards{
     display: flex;
     justify-content: center;
-    margin-top: 58%;
+    margin-top: 56%;
 }
 .card{
     position:relative;
     border: 1px solid black;
     margin-right:7px;
-    height: 70px;
+    height: 81px;
     width: 60px;
     display: inline-block;
+    background-size: cover;
     cursor: pointer;
     transition: all 0.3s;
 }
 .card2{
     position:relative;
+    bottom: 30px;
+    background-size: cover;
     border: 1px solid black;
     margin-right:7px;
-    height: 30px;
-    width: 60px;
+    height: 43px;
+    width: 58px;
     display: block;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -188,7 +199,8 @@ input.normal::placeholder{
     position:relative;
     border: 1px solid black;
     margin-right:5px;
-    height: 55px;
+    background-size: cover;
+    height: 57px;
     width: 42px;
     display: inline-block;
     margin-top: 4px;
