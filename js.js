@@ -151,7 +151,6 @@ function start(){
         "11Y","11T","11L","11A", "12Y","12T","12L","12A",
         "13Y","13T","13L","13A"];
     for(i = 0; i < arr.length; i++){//render cards
-        console.log('dsa');
         document.getElementById('render').style.backgroundImage = `url('./Images/cards/${arr[i]}.jpg')`;
         document.getElementById('render').style.backgroundImage = `url('./Images/cards/oponents/${arr[i]}o.jpg')`;
     }

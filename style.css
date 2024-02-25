@@ -173,7 +173,6 @@ input.normal::placeholder{
 }
 .card{
     position:relative;
-    border: 1px solid black;
     margin-right:7px;
     height: 81px;
     width: 60px;
@@ -186,7 +185,6 @@ input.normal::placeholder{
     position:relative;
     bottom: 30px;
     background-size: cover;
-    border: 1px solid black;
     margin-right:7px;
     height: 43px;
     width: 58px;
@@ -197,7 +195,6 @@ input.normal::placeholder{
 }
 .card3{
     position:relative;
-    border: 1px solid black;
     margin-right:5px;
     background-size: cover;
     height: 57px;
