@@ -142,7 +142,6 @@ function start(){
             document.getElementById('player3score').style.display = 'none';
         }
     }
-
     arr = ["0R","0B",
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
         "3Y","3T","3L","3A", "4Y","4T","4L","4A",
@@ -151,6 +150,12 @@ function start(){
         "9Y","9T","9L","9A", "10Y","10T","10L","10A",
         "11Y","11T","11L","11A", "12Y","12T","12L","12A",
         "13Y","13T","13L","13A"];
+    for(i = 0; i < arr.length; i++){//render cards
+        console.log('dsa');
+        document.getElementById('render').style.backgroundImage = `url('./Images/cards/${arr[i]}.jpg')`;
+        document.getElementById('render').style.backgroundImage = `url('./Images/cards/oponents/${arr[i]}o.jpg')`;
+    }
+    document.getElementById('render').style.display = "none";
     var x = Math.floor(Math.random()*arr.length);
     var floorcard = document.getElementById('floor').appendChild(document.createElement('span'));
     floorcard.setAttribute("class", "card");
