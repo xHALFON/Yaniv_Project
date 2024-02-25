@@ -31,6 +31,8 @@ var Intreval0;
 var Intreval1;
 var Intreval2;
 var Intreval3;
+var chosenbyid = 0;
+var chosenbyseq = 0;
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
@@ -64,11 +66,11 @@ function start(){
     if(allowtostart != 1){
         return;
     }
-    clearInterval(Intreval0);
-    clearInterval(Intreval1);
-    clearInterval(Intreval2);
-    clearInterval(Intreval3);
     if(round == 1){
+        clearInterval(Intreval0);
+        clearInterval(Intreval1);
+        clearInterval(Intreval2);
+        clearInterval(Intreval3);
         for(i = 0; i < numoponents; i++){
             switch(i){
                 case 0:
@@ -141,7 +143,7 @@ function start(){
         }
     }
 
-    arr = ["0L","0A",
+    arr = ["0R","0B",
         "1Y","1T","1L","1A", "2Y","2T","2L","2A",
         "3Y","3T","3L","3A", "4Y","4T","4L","4A",
         "5Y","5T","5L","5A", "6Y","6T","6L","6A",
@@ -188,7 +190,7 @@ function start(){
     }
     
     sumplayer0 = sumId(player0cards);
-    document.getElementById('summsg').innerHTML = sumplayer0;
+    document.getElementById('summsg').innerHTML = 'Hand: '+sumplayer0;
     sumplayer1 = sumId(player1cards);
     sumplayer2 = sumId(player2cards);
     sumplayer3 = sumId(player3cards);
@@ -215,7 +217,7 @@ function u(){
 function updateSum(){
     if(turn == 0){
         sumplayer0 = sumId(player0cards);
-        document.getElementById('summsg').innerHTML = sumplayer0;
+        document.getElementById('summsg').innerHTML = 'Hand: '+sumplayer0;
         if(sumplayer0 <= 7){
             var yanivbtn = document.getElementById('yanivbtn');
             yanivbtn.disabled = false;
@@ -243,19 +245,55 @@ function pickCard(card){
             if(chosenCard[i] === card){
                 chosenCard[i].style.bottom = "0px";
                 chosenCard.splice(i,1);
+                if(chosenCard.length <= 1){
+                    chosenbyid = 0;
+                    chosenbyseq = 0;
+                }
                 return;
             }
         }
-        for(i = 0; i < chosenCard.length; i++){
-            if(equalcards(chosenCard[i].id) == equalcards(card.id)){
+        if(chosenCard.length == 1){
+            if(equalcards(chosenCard[0].id) == equalcards('0B')){
                 card.style.bottom = "20px";
+                chosenbyseq = 1;
                 chosenCard.push(card);
                 return;
+            }
+        }
+        if(chosenbyseq == 0){
+            for(i = 0; i < chosenCard.length; i++){
+                if(equalcards(chosenCard[i].id) == equalcards(card.id)){
+                    chosenbyid = 1;
+                    card.style.bottom = "20px";
+                    chosenCard.push(card);
+                    return;
+                }
+            }
+        }
+        if(chosenbyid == 0){
+            for(i = 0; i < chosenCard.length; i++){
+                if(sequence(card) == true){
+                    card.style.bottom = "20px";
+                    chosenCard.push(card);
+                    chosenbyseq = 1;
+                    return;
+                }
             }
         }
     }else{
         card.style.bottom = "20px";
         chosenCard.push(card);
+    }
+}
+function sequence(card){
+    var a = 0;
+    var b = 0;
+    for(i = 0; i < chosenCard.length; i++){
+        a = `${(Number(equalcards(chosenCard[i].id)) + 1)}`;
+        b = `${(Number(equalcards(chosenCard[i].id)) - 1)}`;
+        if(a.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || b.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || card.id == '0R' || card.id == '0B'){
+            return true;
+        }
     }
 }
 function cardNum(cardid){
@@ -269,6 +307,11 @@ function cardNum(cardid){
 function packetCard(){
     if(arr.length <= 0 || chosenCard.length <= 0){
         return;
+    }
+    if(chosenbyseq == 1){
+        if(chosenCard.length < 3){
+            return;
+        }
     }
     if(turn == 0){
         fc = document.getElementById('floor');
@@ -293,6 +336,8 @@ function packetCard(){
             }
         }
         chosenCard = []
+        chosenbyid = 0;
+        chosenbyseq = 0;
         while (pc.firstChild) {
             pc.removeChild(pc.firstChild);
         }
@@ -320,6 +365,11 @@ function packetCard(){
 function switchcard(card){
     if(chosenCard.length <= 0){
         return;
+    }
+    if(chosenbyseq == 1){
+        if(chosenCard.length < 3){
+            return;
+        }
     }
     if(turn == 0){
         for(i = 0; i < chosenCard.length; i++){
@@ -351,6 +401,8 @@ function switchcard(card){
             floorcards.push(chosenCard[i].id);
         }
         chosenCard = [];
+        chosenbyid = 0;
+        chosenbyseq = 0;
         updateSum();
         console.log('player cards array:' + player0cards);
         console.log('floor cards:' + floorcards);
@@ -458,7 +510,7 @@ async function Oponentplay(){
                         i -= 1;
                     }
                 }
-                for(i = 0; i < comboid.length; i++){ //6S 5A 6L// 6 6
+                for(i = 0; i < comboid.length; i++){
                     for(j = 0; j < combo.length; j++){
                         if(combo[j] != cardNum(comboid[i])){
                             comboid.splice(i,1);
@@ -528,9 +580,9 @@ async function Oponentplay(){
                         }
                         console.log(turn);
                     }
-                }else if(sum(combo) > min(floornums)){
+                }else if(sum(combo) >= min(floornums)){
                     flag1 = 0;
-                    // need to check if there is an queal on floor
+                    // need to check if there is an queal on floor (for hard mode)
                     //check the best card to pick
                     var minfloor = 25;
                     for(i = 0; i < floorcards.length; i++){
@@ -822,7 +874,7 @@ async function Oponentplay(){
                         }
                         console.log(turn);
                     }
-                }else if(sum(combo) > min(floornums)){
+                }else if(sum(combo) >= min(floornums)){
                     flag1 = 0;
                     // need to check if there is an queal on floor
                     //check the best card to pick
@@ -1116,7 +1168,7 @@ async function Oponentplay(){
                         }
                         console.log(turn);
                     }
-                }else if(sum(combo) > min(floornums)){
+                }else if(sum(combo) >= min(floornums)){
                     flag1 = 0;
                     // need to check if there is an queal on floor
                     //check the best card to pick
@@ -1550,11 +1602,14 @@ function finish(winner){
     sumplayer1 = 0;
     sumplayer2 = 0;
     sumplayer3 = 0;
+    chosenbyid = 0;
+    chosenbyseq = 0;
     arr = [];
     firstgame = false;
     floorcards = [];
 }
 async function quitGame(){
+    massage = document.getElementById('mainmsg').style.display = "none";
     document.getElementById('maincont').style.display = "block";
     document.getElementById('gamecont').style.display = "none";
     document.getElementById('fs').style.display = "none";
@@ -1591,5 +1646,7 @@ async function quitGame(){
     player3out = 1;
     arr;
     floorcards = [];
+    chosenbyid = 0;
+    chosenbyseq = 0;
     allowtostart = 0;
 }
