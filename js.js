@@ -33,6 +33,8 @@ var Intreval2;
 var Intreval3;
 var chosenbyid = 0;
 var chosenbyseq = 0;
+var oponentname = ['Eyal', 'Ron', 'Omer', 'Tuval', 'Idan', 'Shlomi', 'Yael', 'Maya', ' Noa'];
+var oponentavatar = ['avatar1','avatar2','avatar3','avatar4','avatar5','avatar6','avatar7','avatar8','avatar9','avatar10','avatar11'];
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
@@ -40,7 +42,8 @@ function verify(){
     med = document.getElementById('medium');
     hard = document.getElementById('hard');
     massage = document.getElementById('mainmsg');
-    if(playername.length <= 0){
+    if(playername.length <= 0 || playername.includes('!')|| playername.includes('@')|| playername.includes('#')|| playername.includes('$')|| playername.includes('%')|| playername.includes('^')|| playername.includes('&')|| playername.includes('*')|| playername.includes('(')|| playername.includes(')') || playername.length >= 15){
+        massage.style.display = 'block';
         massage.innerHTML = "ERROR: Invalid Player Name";
         massage.style.color = "red";
         massage.style.fontWeight = "600";
@@ -54,7 +57,8 @@ function verify(){
         level = 3;
     }
     if(level == 0){
-        massage.innerHTML = "ERROR: Please Choose Level";
+        massage.style.display = 'block';
+        massage.innerHTML = "ERROR: Invalid Game Level";
         massage.style.color = "red";
         massage.style.fontWeight = "600";
         return;
@@ -85,18 +89,34 @@ function start(){
             }
             document.getElementById('pcards'+i).style.display = 'block';
         }
+        document.getElementById('player0name').innerHTML = playername;
     }
 
     for(i = 0; i <= numoponents; i++){
+        var x = 0;
         document.getElementById('player'+(i)).style.boxShadow = 'none';
         document.getElementById(`player${i}msg`).style.display = 'none';
         document.getElementById(`player${i}score`).style.display = 'flex';
+        document.getElementById(`player${i}name`).style.display = "block";
+        if(round == 1){
+            x = Math.floor(Math.random()*oponentavatar.length);
+            document.getElementById('player'+(i)).style.backgroundImage = "url(./Images/PlayerImages/"+oponentavatar.splice(x,1)+".png";
+        }
+    }
+    if(round == 1){
+        for(i = 1; i <= numoponents; i++){
+            var x = 0;
+            x = Math.floor(Math.random()*oponentname.length);
+            document.getElementById(`player${i}name`).innerHTML = oponentname.splice(x,1);
+        }
     }
 
     document.getElementById(`player0score`).innerHTML = scoreplayer0;
     document.getElementById(`player1score`).innerHTML = scoreplayer1;
     document.getElementById(`player2score`).innerHTML = scoreplayer2;
     document.getElementById(`player3score`).innerHTML = scoreplayer3;
+    document.getElementById('quitgamebtn2').style.display = "block";
+    document.getElementById('imgboard4').style.display = "block";
     fmsg = document.getElementById('fmsg').style.color = "black";
     document.getElementById('quitgamebtn').style.display = "none";
     document.getElementById('newrndbtn').style.display = "none";
@@ -300,11 +320,31 @@ function pickCard(card){
 function sequence(card){
     var a = 0;
     var b = 0;
+    var c = 0;
+    var d = 0;
+    var temp = [];
     for(i = 0; i < chosenCard.length; i++){
-        a = `${(Number(equalcards(chosenCard[i].id)) + 1)}`;
-        b = `${(Number(equalcards(chosenCard[i].id)) - 1)}`;
-        if(a.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || b.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || card.id == '0R' || card.id == '0B'){
-            return true;
+        temp.push(chosenCard[i].id);
+    }
+    for(i = 0; i < chosenCard.length; i++){
+        if((temp.includes('0B') || temp.includes('0R')) && temp.length < 3){
+            a = `${(Number(equalcards(chosenCard[i].id)) + 2)}`;
+            b = `${(Number(equalcards(chosenCard[i].id)) - 2)}`;
+            c = `${(Number(equalcards(chosenCard[i].id)) + 1)}`;
+            d = `${(Number(equalcards(chosenCard[i].id)) - 1)}`;
+            if(a.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id ||
+               b.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id ||
+               c.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id ||
+               d.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id ||
+               card.id == '0R' || card.id == '0B'){
+                return true;
+            }
+        }else{
+            a = `${(Number(equalcards(chosenCard[i].id)) + 1)}`;
+            b = `${(Number(equalcards(chosenCard[i].id)) - 1)}`;
+            if(a.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || b.concat((chosenCard[i].id)[chosenCard[i].id.length - 1]) == card.id || card.id == '0R' || card.id == '0B'){
+                return true;
+            }
         }
     }
 }
@@ -1630,6 +1670,12 @@ async function quitGame(){
         document.getElementById('pcards'+i).style.display = "none";
         document.getElementById(`player${i}score`).style.display = "none";
     }
+    document.getElementById('quitgamebtn2').style.display = "none";
+    document.getElementById('imgboard4').style.display = "none";
+    document.getElementById('player0name').style.display = "none";
+    document.getElementById('player1name').style.display = "none";
+    document.getElementById('player2name').style.display = "none";
+    document.getElementById('player3name').style.display = "none";
     round = 1;
     level = 0;
     playername;
@@ -1661,4 +1707,6 @@ async function quitGame(){
     chosenbyid = 0;
     chosenbyseq = 0;
     allowtostart = 0;
+    oponentname = ['Eyal', 'Ron', 'Omer', 'Tuval', 'Shlomi', 'Yael', 'Maya', ' Noa'];
+    oponentavatar = ['avatar1','avatar2','avatar3','avatar4','avatar5','avatar6','avatar7','avatar8','avatar9','avatar10','avatar11'];
 }

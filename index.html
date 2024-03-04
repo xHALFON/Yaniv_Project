@@ -9,11 +9,10 @@
 <body>
     <center>
     <div class="maincont" id="maincont">
-        <div class="imgboard1" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
-        <div class="imgboard2" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
-        <button class="optionsbtn">Options</button>
-        <div class="imgboard3" id="imgboard1"><img src="./Images/board.png" width="200px"></div>
-        <button class="leadbtn">Leaderboard</button>
+        <div class="imgboard2" id="imgboard1"><img src="./Images/board.png" id="changeimg2" width="200px"></div>
+        <button class="optionsbtn" onmousedown="document.getElementById('changeimg2').src = './Images/boardactive.png'" onmouseup="document.getElementById('changeimg2').src = './Images/board.png'">Options</button>
+        <div class="imgboard3" id="imgboard1"><img src="./Images/board.png" id="changeimg3" width="200px"></div>
+        <button class="leadbtn" onmousedown="document.getElementById('changeimg3').src = './Images/boardactive.png'" onmouseup="document.getElementById('changeimg3').src = './Images/board.png'">Leaderboard</button>
         <img src="./Images/board2.png" width="400px" class="detailimg">
         <p class="mainmsg" id="mainmsg"></p>
         <div class="detailscont">
@@ -29,7 +28,8 @@
             <input type="radio" id="medium" name="Level" value="medium">Medium
             <input type="radio" id="hard" name="Level" value="hard">Hard
         </div>
-        <button class="startgamebtn" onclick="verify()">Start Game</button>
+        <div class="imgboard1" id="imgboard1"><img src="./Images/board.png" id="changeimg1" width="200px"></div>
+        <button class="startgamebtn" onclick="verify()" onmousedown="document.getElementById('changeimg1').src = './Images/boardactive.png'" onmouseup="document.getElementById('changeimg1').src = './Images/board.png'">Start Game</button>
     </div>
     </center>
 
@@ -40,6 +40,7 @@
         <span class="player0" id="player0" style="font-size: 12px;"></span>
         <span class="player0msg" id="player0msg"></span>
         <span class="player0score" id="player0score">0</span>
+        <span class="player0name" id="player0name"></span>
         <span class="player1cards" id="pcards1"></span>
         <span class="player2cards" id="pcards2"></span>
         <span class="player3cards" id="pcards3"></span>
@@ -55,13 +56,18 @@
         <span class="player1" id="player1" style="font-size: 12px;"></span>
         <span class="player1msg" id="player1msg"></span>
         <span class="player1score" id="player1score">0</span>
+        <span class="player1name" id="player1name">player1</span>
         <span class="player2" id="player2" style="font-size: 12px;"></span>
         <span class="player2msg" id="player2msg"></span>
         <span class="player2score" id="player2score">0</span>
+        <span class="player2name" id="player2name">player2</span>
         <span class="player3" id="player3" style="font-size: 12px;"></span>
         <span class="player3msg" id="player3msg"></span>
         <span class="player3score" id="player3score">0</span>
+        <span class="player3name" id="player3name">player3</span>
         </center>
+        <div class="imgboard4" id="imgboard4"><img src="./Images/board.png" id="changeimg4" width="150px"></div>
+        <button id="quitgamebtn2" class="quitgamebtn2" onclick="quitGame()" onmousedown="document.getElementById('changeimg4').src = './Images/boardactive.png'" onmouseup="document.getElementById('changeimg4').src = './Images/board.png'">Quit Game</button>
     </div>
     
     <script src="js.js"></script>
