@@ -3,14 +3,25 @@ body{
     color:rgb(0, 0, 0);
     font-family: sans-serif;
 }
-
-/*mainscreen*/
+/*Main screen*/
+.fog{
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    transition: linear 1s;
+}
 .maincont{
-    position: relative;
+    overflow: hidden;
+    position: absolute;
+    top: 40%;
+    left:50%;
+    transform: translate(-50%,-50%);
     display: block;
     border: 1px solid black;
-    width: 800px;
-    height: 600px;
+    width: 900px;
+    height: 700px;
     min-height: 30px;
     margin-top: 60px;
     background-image: url('./Images/s4.jpg');
@@ -82,7 +93,13 @@ input.normal::placeholder{
     width: 35px;
     margin-bottom: 7px;
 }
-/*Game screen*/
+
+.imgboard5{
+    position: absolute;
+    bottom: 45%;
+    left: 43%;
+}
+/*--------------------------Game screen---------------------------*/
 .gamecont{
     display: none;
     position: absolute;
@@ -401,7 +418,7 @@ input.normal::placeholder{
     bottom: 6%;
     right: 5.5%;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 29px;
     color: rgb(230, 230, 230);
     font-weight: 600;
     font-style: italic;
@@ -419,7 +436,7 @@ input.normal::placeholder{
     bottom: 18.1%;
     right: 8%;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 29px;
     color: rgb(230, 230, 230);
     font-weight: 600;
     font-style: italic;
@@ -437,7 +454,7 @@ input.normal::placeholder{
     bottom: 30%;
     right: 4.6%;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 29px;
     color: rgb(230, 230, 230);
     font-weight: 600;
     font-style: italic;
@@ -490,4 +507,33 @@ input.normal::placeholder{
 }
 .quitgamebtn2:active{
     color: rgb(214, 214, 214);
+}
+
+.Entergamebtn{
+    display: block;
+    position: absolute;
+    bottom: 47%;
+    left: 44%;
+    cursor: pointer;
+    font-size: 22px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+}
+.Entergamebtn:hover{
+    color: white;
+}
+.Entergamebtn:active{
+    color: rgb(214, 214, 214);
+}
+
+.resize{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0%;
+    right: -0.4%;
 }

@@ -35,6 +35,22 @@ var chosenbyid = 0;
 var chosenbyseq = 0;
 var oponentname = ['Eyal', 'Ron', 'Omer', 'Tuval', 'Idan', 'Shlomi', 'Yael', 'Maya', ' Noa'];
 var oponentavatar = ['avatar1','avatar2','avatar3','avatar4','avatar5','avatar6','avatar7','avatar8','avatar9','avatar10','avatar11'];
+function enterGame(){
+    var img = document.getElementById('fogimg');
+    var board = document.getElementById('imgboard5');
+    var btn = document.getElementById('enterbtn');
+    img.style.top = "-200%";
+    img.style.left = "-200%";
+    img.style.width = "500%";
+    img.style.height = "500%";
+    board.style.display = "none";
+    btn.style.display = "none";
+    document.getElementById('lobbyaudio').play();
+    setTimeout(function(){
+        img.style.display = "none";
+    }, 1000);
+}
+
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
@@ -71,6 +87,10 @@ function start(){
         return;
     }
     if(round == 1){
+        document.getElementById('lobbyaudio').pause();
+        document.getElementById('startgameaudio').play();
+        document.getElementById('gameaudio').currentTime = 0;
+        document.getElementById('gameaudio').play();
         clearInterval(Intreval0);
         clearInterval(Intreval1);
         clearInterval(Intreval2);
@@ -411,6 +431,7 @@ function packetCard(){
         updateSum();
         arr.splice(x,1);
         turn += 1;
+        document.getElementById('choosecardaudio').play();
         Oponentplay();
     }
 }
@@ -459,6 +480,7 @@ function switchcard(card){
         console.log('player cards array:' + player0cards);
         console.log('floor cards:' + floorcards);
         turn += 1;
+        document.getElementById('choosecardaudio').play();
         Oponentplay();
     }
 }
@@ -626,6 +648,7 @@ async function Oponentplay(){
                         player1cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
+                        document.getElementById('choosecardaudio').play();
                         turn += 1
                         if(numoponents < turn){
                             turn = 0;
@@ -686,6 +709,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player1cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -746,6 +770,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player1cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -802,6 +827,7 @@ async function Oponentplay(){
                     player1cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -920,6 +946,7 @@ async function Oponentplay(){
                         player2cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
+                        document.getElementById('choosecardaudio').play();
                         turn += 1
                         if(numoponents < turn){
                             turn = 0;
@@ -980,6 +1007,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player2cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -1040,6 +1068,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player2cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -1096,6 +1125,7 @@ async function Oponentplay(){
                     player2cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1
                     if(numoponents < turn){
                         turn = 0;
@@ -1214,6 +1244,7 @@ async function Oponentplay(){
                         player3cards.push(arr[x])
                         arr.splice(x,1);  
                         updateSum();
+                        document.getElementById('choosecardaudio').play();
                         turn += 1;
                         if(numoponents < turn){
                             turn = 0;
@@ -1274,6 +1305,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player3cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1;
                     if(numoponents < turn){
                         turn = 0;
@@ -1334,6 +1366,7 @@ async function Oponentplay(){
                     console.log(floorcards);
                     console.log(player3cards);
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1;
                     if(numoponents < turn){
                         turn = 0;
@@ -1390,6 +1423,7 @@ async function Oponentplay(){
                     player3cards.push(arr[x])
                     arr.splice(x,1);  
                     updateSum();
+                    document.getElementById('choosecardaudio').play();
                     turn += 1;
                     if(numoponents < turn){
                         turn = 0;
@@ -1451,6 +1485,9 @@ function checkOponentsCards(player,playernum){ // check assaf
         }
     }
     if(flag == 1){
+        setTimeout(function(){
+            document.getElementById('assafaudio').play();
+        }, 1000);
         var winnermsg = document.getElementById(`player${winner}msg`);
         winnermsg.style.display = 'block';
         winnermsg.innerHTML = 'ASSAF';
@@ -1476,6 +1513,7 @@ function checkOponentsCards(player,playernum){ // check assaf
 }
 function oponentyaniv(){
     if(turn == 1){
+        document.getElementById('yanivaudio').play();
         document.getElementById(`player1msg`).style.display = 'block';
         document.getElementById(`player1msg`).innerHTML = 'YANIV';
         document.getElementById(`player1msg`).style.color = 'rgb(248, 232, 0)';
@@ -1483,6 +1521,7 @@ function oponentyaniv(){
         document.getElementById(`player1msg`).style.textShadow = '2px 2px black';
         finish(checkOponentsCards(player1cards,1));
     }else if(turn == 2){
+        document.getElementById('yanivaudio').play();
         document.getElementById(`player2msg`).style.display = 'block';
         document.getElementById(`player2msg`).innerHTML = 'YANIV';
         document.getElementById(`player2msg`).style.color = 'rgb(248, 232, 0)';
@@ -1490,6 +1529,7 @@ function oponentyaniv(){
         document.getElementById(`player2msg`).style.textShadow = '2px 2px black';
         finish(checkOponentsCards(player2cards,2));
     }else if(turn == 3){
+        document.getElementById('yanivaudio').play();
         document.getElementById(`player3msg`).style.display = 'block';
         document.getElementById(`player3msg`).innerHTML = 'YANIV';
         document.getElementById(`player3msg`).style.color = 'rgb(248, 232, 0)';
@@ -1501,6 +1541,7 @@ function oponentyaniv(){
 function yaniv(){
     if(turn == 0){
         if(sumplayer0 <= 7){
+            document.getElementById('yanivaudio').play();
             document.getElementById('yanivbtn').disabled = true;
             document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
             document.getElementById('yanivbtn').style.cursor = "default";
@@ -1614,7 +1655,6 @@ function finish(winner){
     console.log('playerscore2: '+ scoreplayer2);
     console.log('playerscore3: '+ scoreplayer3);
     fs = document.getElementById('fs');
-    fs.style.display = "block";
     fmsg = document.getElementById('fmsg');
     console.log(scoreplayer1);
     console.log(scoreplayer2);
@@ -1630,18 +1670,27 @@ function finish(winner){
         player3out = 1;
     }
     if(player1out == 1 && player2out == 1 && player3out == 1){
+        setTimeout(() => {
+        fs.style.display = "block";
         fmsg.innerHTML = "You Win<br>Round: " + round;
         fmsg.style.color = "green";
         fmsg.style.fontWeight = "800";
         document.getElementById('quitgamebtn').style.display = "block";
+        }, 2000);
     }else if(scoreplayer0 >= 100){
+        setTimeout(() => {
+        fs.style.display = "block";
         fmsg.innerHTML = "You lost<br>Round: " + round;
         fmsg.style.color = "red";
         fmsg.style.fontWeight = "800";
         document.getElementById('quitgamebtn').style.display = "block";
+        }, 2000);
     }else{
-        document.getElementById('fmsg').innerHTML = "Round: " + round;
-        document.getElementById('newrndbtn').style.display = "block";
+        setTimeout(() => {
+            fs.style.display = "block";
+            document.getElementById('fmsg').innerHTML = "Round: " + round;
+            document.getElementById('newrndbtn').style.display = "block";
+        }, 2000);
     }
     round += 1;
     turn = winner;
@@ -1709,4 +1758,18 @@ async function quitGame(){
     allowtostart = 0;
     oponentname = ['Eyal', 'Ron', 'Omer', 'Tuval', 'Shlomi', 'Yael', 'Maya', ' Noa'];
     oponentavatar = ['avatar1','avatar2','avatar3','avatar4','avatar5','avatar6','avatar7','avatar8','avatar9','avatar10','avatar11'];
+    document.getElementById('lobbyaudio').currentTime = 0;
+    document.getElementById('lobbyaudio').play();
+    document.getElementById('gameaudio').pause();
+}
+function resize(){
+    if(document.body.style.zoom == "100%"){
+    document.body.style.zoom = "125%";
+    document.getElementById('resize').innerHTML = "<i class='fas fa-compress' style='font-size:24px'></i>";
+    document.getElementById('resize2').innerHTML = "<i class='fas fa-compress' style='font-size:24px'></i>";
+    }else{
+        document.body.style.zoom = "100%";
+        document.getElementById('resize').innerHTML = "<i class='fas fa-expand' style='font-size:24px'></i>";
+        document.getElementById('resize2').innerHTML = "<i class='fas fa-expand' style='font-size:24px'></i>";
+    }
 }
