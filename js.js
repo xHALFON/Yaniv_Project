@@ -170,16 +170,20 @@ function start(){
             document.getElementById('player1').style.display = 'none';
             document.getElementById('pcards1').style.display = 'none';
             document.getElementById('player1score').style.display = 'none';
+            document.getElementById(`player1name`).style.display = "none";
+
         }
         if(player2out == 1){
             document.getElementById('player2').style.display = 'none';
             document.getElementById('pcards2').style.display = 'none';
             document.getElementById('player2score').style.display = 'none';
+            document.getElementById(`player2name`).style.display = "none";
         }
         if(player3out == 1){
             document.getElementById('player3').style.display = 'none';
             document.getElementById('pcards3').style.display = 'none';
             document.getElementById('player3score').style.display = 'none';
+            document.getElementById(`player3name`).style.display = "none";
         }
     }
     arr = ["0R","0B",
