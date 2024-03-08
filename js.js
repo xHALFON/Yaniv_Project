@@ -144,7 +144,8 @@ function start(){
     document.getElementById('maincont').style.display = "none";
     document.getElementById('gamecont').style.display = "block"
     document.getElementById('yanivbtn').disabled = true;
-    document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+    document.getElementById('yanivbtnimg').src = "./Images/yanivbtndis.png"
+    document.getElementById('yanivbtnimg').classList.remove("zoomInOut");
     document.getElementById('yanivbtn').style.cursor = 'default';
     document.getElementById('yanivbtn').style.border = "none";
 
@@ -264,12 +265,6 @@ function start(){
     console.log('floor cards:' + floorcards);
     chosenCard = [];
 }
-function o(){
-    document.getElementById('yanivbtn').style.border = "2px solid black";
-}
-function u(){
-    document.getElementById('yanivbtn').style.border = "1px solid black";
-}
 function updateSum(){
     if(turn == 0){
         sumplayer0 = sumId(player0cards);
@@ -277,13 +272,14 @@ function updateSum(){
         if(sumplayer0 <= 7){
             var yanivbtn = document.getElementById('yanivbtn');
             yanivbtn.disabled = false;
-            yanivbtn.style.backgroundImage = "url('./Images/yanivbtn.png')"
+            document.getElementById('yanivbtnimg').src = "./Images/yanivbtn.png";
             yanivbtn.style.cursor = 'pointer';
-            yanivbtn.style.border = "1px solid black";
+            document.getElementById('yanivbtnimg').classList.add("zoomInOut");
         }else{
             document.getElementById('yanivbtn').disabled = true;
-            document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+            document.getElementById('yanivbtnimg').src = "./Images/yanivbtndis.png";
             document.getElementById('yanivbtn').style.cursor = 'default';
+            document.getElementById('yanivbtnimg').classList.remove("zoomInOut");
             document.getElementById('yanivbtn').style.border = "none";
         }
     }else if(turn == 1){
@@ -1547,7 +1543,8 @@ function yaniv(){
         if(sumplayer0 <= 7){
             document.getElementById('yanivaudio').play();
             document.getElementById('yanivbtn').disabled = true;
-            document.getElementById('yanivbtn').style.backgroundImage = "url('./Images/yanivbtndis.png')"
+            document.getElementById('yanivbtnimg').src = "./Images/yanivbtndis.png"
+            document.getElementById('yanivbtnimg').classList.remove("zoomInOut");
             document.getElementById('yanivbtn').style.cursor = "default";
             document.getElementById('yanivbtn').style.border = "none";
             document.getElementById(`player0msg`).style.display = 'block';
