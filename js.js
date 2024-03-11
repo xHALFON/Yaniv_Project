@@ -35,6 +35,8 @@ var chosenbyid = 0;
 var chosenbyseq = 0;
 var oponentname = ['Eyal', 'Ron', 'Omer', 'Tuval', 'Idan', 'Shlomi', 'Yael', 'Maya', ' Noa'];
 var oponentavatar = ['avatar1','avatar2','avatar3','avatar4','avatar5','avatar6','avatar7','avatar8','avatar9','avatar10','avatar11'];
+var Pointtoslose;
+var Scoretoyaniv;
 function enterGame(){
     var img = document.getElementById('fogimg');
     var board = document.getElementById('imgboard5');
@@ -54,6 +56,10 @@ function enterGame(){
 function verify(){
     playername = document.getElementById('username').value;
     numoponents = document.getElementById('numoponents').value;
+    Pointtoslose = document.querySelector('input[name=Pointtoslose]:checked').value;
+    Scoretoyaniv = document.querySelector('input[name=Scoretoyaniv]:checked').value;
+    console.log("Point to lose: " + Pointtoslose);
+    console.log("Yaniv at: " + Scoretoyaniv);
     beg = document.getElementById('beginner');
     med = document.getElementById('medium');
     hard = document.getElementById('hard');
@@ -139,7 +145,7 @@ function start(){
     document.getElementById('imgboard4').style.display = "block";
     fmsg = document.getElementById('fmsg').style.color = "black";
     document.getElementById('quitgamebtn').style.display = "none";
-    document.getElementById('newrndbtn').style.display = "none";
+    fs.style.animation = "0.3s SettingsZoomout ease-in-out";
     document.getElementById('fs').style.display = "none";
     document.getElementById('maincont').style.display = "none";
     document.getElementById('gamecont').style.display = "block"
@@ -269,7 +275,7 @@ function updateSum(){
     if(turn == 0){
         sumplayer0 = sumId(player0cards);
         document.getElementById('summsg').innerHTML = 'Hand: '+sumplayer0;
-        if(sumplayer0 <= 7){
+        if(sumplayer0 <= Number(Scoretoyaniv)){
             var yanivbtn = document.getElementById('yanivbtn');
             yanivbtn.disabled = false;
             document.getElementById('yanivbtnimg').src = "./Images/yanivbtn.png";
@@ -778,7 +784,7 @@ async function Oponentplay(){
                     console.log(turn);
                 }else{  // take card from deck
                     var maxhand = findMaxInCards(player1cards);
-                    if(sumplayer1 <= 7){
+                    if(sumplayer1 <= Number(Scoretoyaniv)){
                         oponentyaniv();
                         return;
                     }
@@ -1076,7 +1082,7 @@ async function Oponentplay(){
                     console.log(turn);
                 }else{  // take card from deck
                     var maxhand = findMaxInCards(player2cards);
-                    if(sumplayer2 <= 7){
+                    if(sumplayer2 <= Number(Scoretoyaniv)){
                         oponentyaniv();
                         return;
                     }
@@ -1374,7 +1380,7 @@ async function Oponentplay(){
                     console.log(turn);
                 }else{  // take card from deck
                     var maxhand = findMaxInCards(player3cards);
-                    if(sumplayer3 <= 7){
+                    if(sumplayer3 <= Number(Scoretoyaniv)){
                         oponentyaniv();
                         return;
                     }
@@ -1540,7 +1546,7 @@ function oponentyaniv(){
 }
 function yaniv(){
     if(turn == 0){
-        if(sumplayer0 <= 7){
+        if(sumplayer0 <= Number(Scoretoyaniv)){
             document.getElementById('yanivaudio').play();
             document.getElementById('yanivbtn').disabled = true;
             document.getElementById('yanivbtnimg').src = "./Images/yanivbtndis.png"
@@ -1574,7 +1580,7 @@ function updateScore(winner){
     var dscore1 = scoreplayer1;
     var dscore2 = scoreplayer2;
     var dscore3 = scoreplayer3;
-    for(i = 0; i < 100; i++){ //real score
+    for(i = 0; i < Number(Pointtoslose); i++){ //real score
         if(winner != 0 && scoreplayer0 != (score0 + sumplayer0)){
             scoreplayer0 += 1;
         }
@@ -1656,44 +1662,56 @@ function finish(winner){
     console.log('playerscore2: '+ scoreplayer2);
     console.log('playerscore3: '+ scoreplayer3);
     fs = document.getElementById('fs');
+    fs.style.animation = "0.3s SettingsZoomin ease-in-out";
     fmsg = document.getElementById('fmsg');
     console.log(scoreplayer1);
     console.log(scoreplayer2);
     console.log(scoreplayer3);
-    if(scoreplayer1 >= 100){
+    if(scoreplayer1 >= Number(Pointtoslose)){
         console.log('dsa');
         player1out = 1;
     }
-    if(scoreplayer2 >= 100){
+    if(scoreplayer2 >= Number(Pointtoslose)){
         player2out = 1;
     }
-    if(scoreplayer3 >= 100){
+    if(scoreplayer3 >= Number(Pointtoslose)){
         player3out = 1;
     }
     if(player1out == 1 && player2out == 1 && player3out == 1){
         setTimeout(() => {
         fs.style.display = "block";
         fmsg.innerHTML = "You Win<br>Round: " + round;
-        fmsg.style.color = "green";
+        fmsg.style.top = "-24%";
+        fmsg.style.left = "31%";
+        fmsg.style.color = "rgb(0, 223, 0)";
         fmsg.style.fontWeight = "800";
+        document.getElementById('newrndbtn').style.display = "none";
         document.getElementById('quitgamebtn').style.display = "block";
+        round += 1;
         }, 2000);
-    }else if(scoreplayer0 >= 100){
+    }else if(scoreplayer0 >= Number(Pointtoslose)){
         setTimeout(() => {
         fs.style.display = "block";
         fmsg.innerHTML = "You lost<br>Round: " + round;
+        fmsg.style.top = "-24%";
+        fmsg.style.left = "31%";
         fmsg.style.color = "red";
         fmsg.style.fontWeight = "800";
+        document.getElementById('newrndbtn').style.display = "none";
         document.getElementById('quitgamebtn').style.display = "block";
+        round += 1;
         }, 2000);
     }else{
         setTimeout(() => {
             fs.style.display = "block";
             document.getElementById('fmsg').innerHTML = "Round: " + round;
+            fmsg.style.top = "-16%";
+            fmsg.style.left = "31.5%";
+            document.getElementById('quitgamebtn').style.display = "none";
             document.getElementById('newrndbtn').style.display = "block";
+            round += 1;
         }, 2000);
     }
-    round += 1;
     turn = winner;
     chosenCard = [];
     player0cards = [];
@@ -1714,6 +1732,7 @@ async function quitGame(){
     massage = document.getElementById('mainmsg').style.display = "none";
     document.getElementById('maincont').style.display = "block";
     document.getElementById('gamecont').style.display = "none";
+    fs.style.animation = "0.3s SettingsZoomout ease-in-out";
     document.getElementById('fs').style.display = "none";
     for(i = 1; i < 4; i++){
         document.getElementById('player'+i).style.display = "none";
@@ -1773,4 +1792,19 @@ function resize(){
         document.getElementById('resize').innerHTML = "<i class='fas fa-expand' style='font-size:24px'></i>";
         document.getElementById('resize2').innerHTML = "<i class='fas fa-expand' style='font-size:24px'></i>";
     }
+}
+function Settings(){
+    console.log("dsadsa");
+    document.querySelector('.Settingscont').style.animation = "0.3s SettingsZoomin ease-in-out";
+    document.querySelector('.Settingscont').style.display = "block";
+    document.querySelector('.leadbtn').disabled = true;
+    document.querySelector('.startgamebtn').disabled = true;
+    document.querySelector('.Settingsbtn').disabled = true;
+}
+function exitsettings(){
+    document.querySelector('.Settingscont').style.animation = "0.3s SettingsZoomout ease-in-out";
+    document.querySelector('.Settingscont').style.display = "none";
+    document.querySelector('.leadbtn').disabled = false;
+    document.querySelector('.startgamebtn').disabled = false;
+    document.querySelector('.Settingsbtn').disabled = false;
 }
