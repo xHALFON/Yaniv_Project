@@ -1,4 +1,4 @@
-var level = 0; // 1 - easy, 2 - medium, 3 - hard
+var level = 0; // 1 - easy, 2 - hard, 3 - comp
 var playername = "dsa";
 var playercards;
 var numoponents;
@@ -6,7 +6,7 @@ var massage;
 var turn; // 0 - player0, 1 - player1....
 var beg;
 var hard;
-var med;
+var comp;
 var chosenCard = [];
 var player0cards = [];
 var player1cards = [];
@@ -61,7 +61,7 @@ function verify(){
     console.log("Point to lose: " + Pointtoslose);
     console.log("Yaniv at: " + Scoretoyaniv);
     beg = document.getElementById('beginner');
-    med = document.getElementById('medium');
+    comp = document.getElementById('competition');
     hard = document.getElementById('hard');
     massage = document.getElementById('mainmsg');
     if(playername.length <= 0 || playername.includes('!')|| playername.includes('@')|| playername.includes('#')|| playername.includes('$')|| playername.includes('%')|| playername.includes('^')|| playername.includes('&')|| playername.includes('*')|| playername.includes('(')|| playername.includes(')') || playername.length >= 15){
@@ -73,10 +73,10 @@ function verify(){
     }
     if(beg.checked){
         level = 1;
-    }else if(med.checked){
-        level = 2;
-    }else if(hard.checked){
+    }else if(comp.checked){
         level = 3;
+    }else if(hard.checked){
+        level = 2;
     }
     if(level == 0){
         massage.style.display = 'block';
@@ -116,6 +116,9 @@ function start(){
             document.getElementById('pcards'+i).style.display = 'block';
         }
         document.getElementById('player0name').innerHTML = playername;
+        document.getElementById('maincont').style.animation = "0.5s screenup ease-in-out";
+        document.getElementById('maincont').style.display = "none";
+        document.getElementById('gamecont').style.display = "block";
     }
 
     for(i = 0; i <= numoponents; i++){
@@ -147,8 +150,6 @@ function start(){
     document.getElementById('quitgamebtn').style.display = "none";
     fs.style.animation = "0.3s SettingsZoomout ease-in-out";
     document.getElementById('fs').style.display = "none";
-    document.getElementById('maincont').style.display = "none";
-    document.getElementById('gamecont').style.display = "block"
     document.getElementById('yanivbtn').disabled = true;
     document.getElementById('yanivbtnimg').src = "./Images/yanivbtndis.png"
     document.getElementById('yanivbtnimg').classList.remove("zoomInOut");
@@ -1731,7 +1732,10 @@ function finish(winner){
 async function quitGame(){
     massage = document.getElementById('mainmsg').style.display = "none";
     document.getElementById('maincont').style.display = "block";
-    document.getElementById('gamecont').style.display = "none";
+    document.getElementById('maincont').style.animation = "0.5s screendown ease-in-out";
+    setTimeout(() => {
+        document.getElementById('gamecont').style.display = "none";
+    
     fs.style.animation = "0.3s SettingsZoomout ease-in-out";
     document.getElementById('fs').style.display = "none";
     for(i = 1; i < 4; i++){
@@ -1745,6 +1749,7 @@ async function quitGame(){
     document.getElementById('player1name').style.display = "none";
     document.getElementById('player2name').style.display = "none";
     document.getElementById('player3name').style.display = "none";
+    }, 450);
     round = 1;
     level = 0;
     playername;
@@ -1754,7 +1759,7 @@ async function quitGame(){
     turn = 0;
     beg;
     hard;
-    med;
+    comp;
     chosenCard = [];
     player0cards = [];
     player1cards = [];
@@ -1807,4 +1812,17 @@ function exitsettings(){
     document.querySelector('.leadbtn').disabled = false;
     document.querySelector('.startgamebtn').disabled = false;
     document.querySelector('.Settingsbtn').disabled = false;
+}
+
+function lead(){
+    document.getElementById('maincont').style.animation = "0.5s screenleft ease-in-out";
+    document.getElementById('maincont').style.display = "none";
+    document.getElementById('leadcont').style.display = "block";
+}
+function leadmainmenu(){
+    document.getElementById('maincont').style.animation = "0.5s screenright ease-in-out";
+    document.getElementById('maincont').style.display = "block";
+    setTimeout(() => {
+        document.getElementById('leadcont').style.display = "none";
+    }, 450);
 }

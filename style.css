@@ -12,18 +12,58 @@ body{
     height: 100%;
     transition: linear 1s;
 }
-.maincont{
+.container{
     overflow: hidden;
     position: absolute;
     top: 40%;
-    left:50%;
+    left: 50%;
     transform: translate(-50%,-50%);
-    display: block;
-    border: 1px solid black;
+    margin-top: 60px;
     width: 900px;
     height: 700px;
-    min-height: 30px;
-    margin-top: 60px;
+    border: 1px solid black;
+}
+@keyframes screenup {
+    from{
+        display: block;
+    }
+    to{
+        transform: translateY(-100%);
+    }
+}
+@keyframes screenleft {
+    from{
+        display: block;
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+@keyframes screenright {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+@keyframes screendown {
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+.maincont{
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 900px;
+    height: 700px;
+    margin: 0;
     background-image: url('./Images/s4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -202,17 +242,13 @@ input[type="radio"]:checked:after {
 .gamecont{
     display: none;
     position: absolute;
+    top: 0;
+    left: 0;
     background-image: url('./Images/s5.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
-    border: 1px solid black;
     width: 900px;
     height: 700px;
-    top: 40%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    min-height: 30px;
-    margin-top: 60px;
 }
 .cards{
     position: absolute;
@@ -532,6 +568,88 @@ input[type="radio"]:checked:after {
     top: 58%;
     left: 22%;
 }
+/*--------------------leadcont---------------------*/
+.leadcont{
+    display: none;
+    background-image: url('./Images/s4.jpg');
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 900px;
+    height: 700px;
+}
+.leadtable{
+    background-image: url('./Images/leadtable.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position:absolute;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 62.4%;
+    height: 103%;
+}
+.feed{
+    max-width: 80%;
+    margin-top: 29.3%;
+    margin-left: 10%;
+}
+.playerfeed{
+    background-image: url('./Images/bgfeed.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 47px;
+}
+.rank{
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+.playerfeedname{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 20px;
+    color: white;
+    font-weight: 600;
+    font-style:italic;
+    text-shadow: rgb(255, 255, 255) 3px 0px 10px;
+}
+.playerfeedrounds{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 145px;
+    color: white;
+    font-weight: 600;
+    font-style:italic;
+    text-shadow: rgb(255, 255, 255) 3px 0px 10px;
+}
+.playerfeedLevel{
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 280px;
+    color: white;
+    font-weight: 600;
+    font-style:italic;
+    text-shadow: rgb(255, 255, 255) 3px 0px 10px;
+    font-weight: 600;
+    font-style:italic;
+}
+.leadtitle{
+    position: absolute;
+    top: 3%;
+    left: 30%;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 35px;
+    text-shadow: rgb(245, 245, 245) 3px 0px 10px;
+}
+.imgboard6{
+    position: absolute;
+    bottom: 0;
+    left: 0.5%;
+}
 /*--------------------buttons----------------------*/
 .startgamebtn{
     text-shadow: rgb(46, 46, 46) 3px 0 10px;
@@ -717,4 +835,22 @@ input[type="radio"]:checked:after {
     width: 30px;
     top: 3%;
     cursor: pointer;
+}
+.leadmainmenu{
+    position: absolute;
+    bottom: 1.7%;
+    left: 1.7%;
+    cursor: pointer;
+    font-size: 20px;
+    color: rgb(230, 230, 230);
+    font-weight: 600;
+    font-style: italic;
+    background-color: transparent;
+    border: none;
+}
+.leadmainmenu:after{
+    color: white;
+}
+.leadmainmenu:active{
+    color: rgb(214, 214, 214);
 }
