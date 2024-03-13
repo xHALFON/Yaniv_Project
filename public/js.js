@@ -17,9 +17,9 @@ var sumplayer1 = 0;
 var sumplayer2 = 0;
 var sumplayer3 = 0;
 var scoreplayer0 = 0;
-var scoreplayer1 = 0;
-var scoreplayer2 = 0;
-var scoreplayer3 = 0;
+var scoreplayer1 = 49;
+var scoreplayer2 = 49;
+var scoreplayer3 = 49;
 var arr;
 var floorcards = [];
 var round = 1;
@@ -1743,11 +1743,12 @@ function finish(winner){
                 document.getElementById('fsroundsdet').innerHTML = 'Rounds: ' + Trounds;
                 document.getElementById('fsgamedet').innerHTML = 'Games: ' + Tgames;
                 axios.get('/api').then(response => {
-                    leaders = response.data;
+                    var leaders = response.data;
                     leaders.sort(dynamicSort("GameCounts"));
                     leaders.reverse();
-                    if(Tgames < leaders[leaders.length - 1].GameCounts || leaders.length < 10){
+                    if(Tgames > leaders[9].GameCounts || leaders.length < 10){
                         axios.post('/addplayer', {name: playername, TotalRounds: Trounds, GameCounts: Tgames});
+                        console.log('Player Saved to DB');
                     }
                 }).catch(error => {
                     console.error(error);
