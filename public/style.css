@@ -209,7 +209,6 @@ input[type="radio"]{
     height: 20px;
     position: relative;
     width: 20px;
-    -webkit-appearance: none;
 }
 input[type="radio"]:after {
     background-color: rgb(124, 71, 1);
