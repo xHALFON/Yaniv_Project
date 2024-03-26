@@ -44,3 +44,6 @@ Manages the storage and display of player scores using MongoDB. Allows players t
 ## Leaderboard:
 The leaderboard is stored in a MongoDB database. Players' scores are recorded and displayed on the leaderboard.
 ![leaderboardpic](./public/Images/readme/leaderboard.png)
+
+## Credits
+- Developed by Guy Halfon
