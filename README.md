@@ -13,7 +13,7 @@ Objective: The objective of the game is to minimize the points in your hand by f
 
 - **Sets**: Players can form sets of cards, such as three of a kind or a straight (sequence of cards in the same suit). Sets are used to reduce the total points in the player's hand.
 
-- **Yaniv**: A player can declare "Yaniv" on their turn if they believe they have the lowest total points in their hand. To declare "Yaniv," a player's total points must be equal to or less than the current minimum threshold (usually 7 or 5). Once "Yaniv" is declared, other players have one more turn to try and lower their own total points.
+- **Yaniv**: A player can declare "Yaniv" on their turn if they believe they have the lowest total points in their hand. To declare "Yaniv," a player's total points must be equal to or less than the current minimum threshold (usually 7 or 5). Once "Yaniv" is declared, The player with the lowest hand wins the round.
 
 - **Assaf**: If a player declares "Yaniv" but is found to have the highest total points in their hand, they are "Assafed" and receive a penalty equal to the value of their hand.
 
