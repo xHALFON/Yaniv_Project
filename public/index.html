@@ -22,7 +22,6 @@
         </script>
     <div class="container">
         <div class="gamecont" id="gamecont">
-            <button class="resize" id="resize2" onclick="resize()"><i class="fas fa-expand" style='font-size:24px'></i></button>
             <span class="card" id="render">render</span>
             <div class="cards" onclick="packetCard()"></div>
             <div class="floor" id="floor"></div>
@@ -34,7 +33,9 @@
             <span class="player2cards" id="pcards2"></span>
             <span class="player3cards" id="pcards3"></span>
             <span class="player0cards" id="pcards0"></span>
+            <span style="position: absolute; bottom: -1%; right:0%;">
             <img id="yanivbtnimg" src="./Images/yanivbtndis.png" width="170px">
+            </span>
             <button class="yanivbtn" id="yanivbtn" onclick="yaniv()" disabled></button>
         
             <center>
@@ -65,6 +66,7 @@
             </center>
             <div class="imgboard4" id="imgboard4"><img src="./Images/board.png" id="changeimg4" width="150px"></div>
             <button id="quitgamebtn2" class="quitgamebtn2" onclick="quitGame()" onmousedown="document.getElementById('changeimg4').src = './Images/boardactive.png'" onmouseup="document.getElementById('changeimg4').src = './Images/board.png'">Quit Game</button>
+            <button class="resize" id="resize2" onclick="resize()"><i class="fas fa-expand" style='font-size:24px'></i></button>
         </div>
 
         <div class="leadcont" id="leadcont">

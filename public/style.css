@@ -344,6 +344,7 @@ input[type="radio"]:checked:after {
     display: flex;
     justify-content: center;
     margin-top: 56%;
+    height: 28%;
 }
 .card{
     position:relative;
@@ -432,6 +433,8 @@ input[type="radio"]:checked:after {
     position:absolute;
     top: 40%;
     left: 11%;
+    width: 10%;
+    height: 30%;
 }
 .player2{
     display: none;
@@ -486,6 +489,7 @@ input[type="radio"]:checked:after {
     position:absolute;
     top: 13%;
     left: 38%;
+    height: 30%;
 }
 .player3{
     display: none;
@@ -540,6 +544,7 @@ input[type="radio"]:checked:after {
     position:absolute;
     top: 40%;
     right: 10%;
+    height: 32%;
 }
 
 .finishscreen{
@@ -597,6 +602,156 @@ input[type="radio"]:checked:after {
     position: absolute;
     top: 58%;
     left: 22%;
+}
+/* --Card Animations--*/
+@keyframes packetanimation {
+    from{
+        top: -75%;
+        left: -6%;
+        transform: rotate(-90deg);
+    }
+    to{
+        top: 0%;
+        left: 0%;
+    }
+}
+@keyframes toflooranimation {
+    from{
+        position: relative;
+        top: 170%;
+        left: -20%;
+        width: 10%;
+        height: 10%;
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes todeckanimation {
+    from{
+        position: relative;
+        top: -100%;
+        left: -5%;
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+    
+}
+@keyframes toflooroponentsanimation{
+    from{
+        position: relative;
+        top: 50%;
+        left: -90%;
+        transform: rotate(90deg);
+        width: 5%;
+        height: 15%;
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes todeckoponentanimation {
+    from{
+        position: relative;
+        bottom: 65%;
+        left: 430%;
+        transform: rotate(-100deg);
+        width: 58px;
+        height: 43px;
+    }
+    to{
+        bottom: 13%;
+        left: 0;
+    }
+}
+@keyframes packetoponentanimation {
+    from{
+        top: -60%;
+        left: 150%;
+        transform: rotate(-70deg);
+    }
+    to{
+        top: -13%;
+        left: 0%;
+    }
+}
+@keyframes toflooroponent2sanimation{
+    from{
+        position: relative;
+        top: -100%;
+        left: -20%;
+        width: 5%;
+        height: 5%;
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes todeckoponent2animation {
+    from{
+        position: relative;
+        top: 90%;
+        left: 10%;
+        width: 42px;
+        height: 57px;
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes packetoponent2animation {
+    from{
+        top: 75%;
+        left: -90%;
+        transform: rotate(40deg);
+    }
+    to{
+        top: 0%;
+        left: 0%;
+    }
+}
+@keyframes toflooroponent3sanimation{
+    from{
+        position: relative;
+        top: 55%;
+        left: 50%;
+        width: 5%;
+        height: 15%;
+        transform: rotate(-90deg);
+    }
+    to{
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes todeckoponent3animation {
+    from{
+        position: relative;
+        top: -60%;
+        left: -400%;
+        transform: rotate(100deg);
+    }
+    to{
+        top: -13%;
+        left: 0;
+    }
+}
+@keyframes packetoponent3animation {
+    from{
+        top: -75%;
+        left: -800%;
+        transform: rotate(40deg);
+    }
+    to{
+        top: -13%;
+        left: 0%;
+    }
 }
 /*--------------------leadcont---------------------*/
 .leadcont{

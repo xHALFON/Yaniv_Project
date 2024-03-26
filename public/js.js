@@ -413,6 +413,7 @@ function packetCard(){
             var nfc = fc.appendChild(document.createElement('span'));
             nfc.setAttribute('class', 'card');
             nfc.setAttribute('id', chosenCard[i].id);
+            nfc.style.animation = "0.2s toflooranimation ease-in-out"
             nfc.setAttribute('onclick', 'switchcard(this)')
             nfc.style.backgroundImage = `url('./Images/cards/${chosenCard[i].id}.jpg')`;
             floorcards.push(chosenCard[i].id);
@@ -440,11 +441,13 @@ function packetCard(){
         var x = Math.floor(Math.random()*arr.length);
         var pcards = document.getElementById('pcards0');
         cardi = pcards.appendChild(document.createElement("span"));
+        pcards.insertBefore(cardi, pcards.firstChild);
         cardi.setAttribute("class", "card");
         cardi.setAttribute("id", arr[x]);
         cardi.setAttribute("onclick", "pickCard(this)");
         cardi.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`
-        player0cards.push(arr[x])
+        player0cards.push(arr[x]);
+        cardi.style.animation = "0.3s packetanimation ease-in-out";
         updateSum();
         arr.splice(x,1);
         turn += 1;
@@ -475,6 +478,7 @@ function switchcard(card){
         newdeckcard = document.getElementById('pcards0').appendChild(document.createElement('span'));
         newdeckcard.setAttribute('class', 'card');
         newdeckcard.setAttribute('id', card.id);
+        newdeckcard.style.animation = "0.3s todeckanimation ease-in-out";
         newdeckcard.setAttribute('onclick', 'pickCard(this)');
         newdeckcard.style.backgroundImage = `url('./Images/cards/${card.id}.jpg')`;
         var floors = document.getElementById('floor');
@@ -486,6 +490,7 @@ function switchcard(card){
             newfloorcard = document.getElementById('floor').appendChild(document.createElement('span'));
             newfloorcard.setAttribute('class', 'card');
             newfloorcard.setAttribute('id', chosenCard[i].id);
+            newfloorcard.style.animation = "0.3s toflooranimation ease-in-out";
             newfloorcard.setAttribute('onclick', 'switchcard(this)');
             newfloorcard.style.backgroundImage = `url('./Images/cards/${chosenCard[i].id}.jpg')`;
             floorcards.push(chosenCard[i].id);
@@ -634,6 +639,7 @@ async function Oponentplay(){
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
                             fc.setAttribute('onclick', 'switchcard(this)');
+                            fc.style.animation = "0.3s toflooroponentsanimation ease-in-out";
                             fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
                         floorcards = [];
@@ -646,21 +652,22 @@ async function Oponentplay(){
                         for(i = 0; i < player1cards.length; i++){
                             for(j = 0; j < floorcards.length; j++){
                                 if(player1cards[i] == floorcards[j]){
-                                    i -= 1;
                                     player1cards.splice(i,1);
+                                    console.log('222222222222222222222222222222222222');
                                 }
                             }
                         }
                         for(i = 0; i < player1cards.length; i++){
                             var nc = playerdeck.appendChild(document.createElement('span'));
                             nc.setAttribute('class', 'card2')
-                            nc.setAttribute('id', player1cards[i])
+                            nc.setAttribute('id', player1cards[i]);
                             nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card2");
                         nc.setAttribute("id", arr[x]);
+                        nc.style.animation = "0.3s packetoponentanimation ease-in-out";
                         nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                         player1cards.push(arr[x])
                         arr.splice(x,1);  
@@ -671,6 +678,7 @@ async function Oponentplay(){
                             turn = 0;
                         }
                         console.log(turn);
+                        nc.style.animation = "none";
                     }
                 }else if(sum(combo) >= min(floornums)){
                     flag1 = 0;
@@ -694,6 +702,7 @@ async function Oponentplay(){
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
                         fc.setAttribute('onclick', 'switchcard(this)');
+                        fc.style.animation = "0.3s toflooroponentsanimation ease-in-out";
                         fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
                     for(i = 0; i < floorcards.length; i++){
@@ -709,6 +718,7 @@ async function Oponentplay(){
                         for(j = 0; j < floorcards.length; j++){
                             if(player1cards[i] == floorcards[j]){
                                 player1cards.splice(i,1);
+                                console.log("33333333333333333333333333");
                             }
                         }
                     }
@@ -719,8 +729,13 @@ async function Oponentplay(){
                     }
                     for(i = 0; i < player1cards.length; i++){
                     var nc = playerdeck.appendChild(document.createElement('span'));
-                    nc.setAttribute('class', 'card2')
-                    nc.setAttribute('id', player1cards[i])
+                    nc.setAttribute('class', 'card2');
+                    if(i == player1cards.length -1){
+                        nc.style.animation = "0.3s todeckoponentanimation ease-in-out";
+                    }else{
+                        nc.style.animation = "none";
+                    }
+                    nc.setAttribute('id', player1cards[i]);
                     nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
@@ -758,6 +773,7 @@ async function Oponentplay(){
                         if(maxhand == equalcards(player1cards[i])){
                             maxhandId = player1cards[i];
                             player1cards.splice(i,1);
+                            console.log("4444444444444444444444444444");
                             break;
                         }
                     }
@@ -771,6 +787,7 @@ async function Oponentplay(){
                     fc = floordeck.appendChild(document.createElement('span'));
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
+                    fc.style.animation = "0.3s toflooroponentsanimation ease-in-out";
                     fc.setAttribute('onclick', 'switchcard(this)');
                     fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
@@ -782,6 +799,11 @@ async function Oponentplay(){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card2');
                         nc.setAttribute('id', player1cards[i]);
+                        if(i == player1cards.length -1){
+                            nc.style.animation = "0.3s todeckoponentanimation ease-in-out";
+                        }else{
+                            nc.style.animation = "none";
+                        }
                         nc.style.backgroundImage = `url('./Images/cards/oponents/${player1cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
@@ -809,6 +831,7 @@ async function Oponentplay(){
                         if(maxhand == equalcards(player1cards[i])){
                             maxhandId = player1cards[i];
                             player1cards.splice(i,1);
+                            console.log("5555555555555555555555555555");
                             break;
                         }
                     }
@@ -816,12 +839,14 @@ async function Oponentplay(){
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
                     nfc.setAttribute('onclick', 'switchcard(this)')
+                    nfc.style.animation = "0.3s toflooroponentsanimation ease-in-out";
                     nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
 
                     for(i = 0; i < player1cards.length; i++){
                         if(player1cards[i] == maxhandId){
                             player1cards.splice(i,1);
+                            console.log("111111111111111111111111");
                             break;
                         }
                     }
@@ -840,6 +865,7 @@ async function Oponentplay(){
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card2");
                     nc.setAttribute("id", arr[x]);
+                    nc.style.animation = "0.3s packetoponentanimation ease-in-out";
                     nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                     player1cards.push(arr[x])
                     arr.splice(x,1);  
@@ -932,6 +958,7 @@ async function Oponentplay(){
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
                             fc.setAttribute('onclick', 'switchcard(this)');
+                            fc.style.animation = "0.3s toflooroponent2sanimation ease-in-out";
                             fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
                         floorcards = [];
@@ -944,21 +971,21 @@ async function Oponentplay(){
                         for(i = 0; i < player2cards.length; i++){
                             for(j = 0; j < floorcards.length; j++){
                                 if(player2cards[i] == floorcards[j]){
-                                    i -= 1;
                                     player2cards.splice(i,1);
                                 }
                             }
                         }
                         for(i = 0; i < player2cards.length; i++){
                             var nc = playerdeck.appendChild(document.createElement('span'));
-                            nc.setAttribute('class', 'card3')
-                            nc.setAttribute('id', player2cards[i])
+                            nc.setAttribute('class', 'card3');
+                            nc.setAttribute('id', player2cards[i]);
                             nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card3");
                         nc.setAttribute("id", arr[x]);
+                        nc.style.animation = "0.3s packetoponent2animation ease-in-out";
                         nc.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
                         player2cards.push(arr[x])
                         arr.splice(x,1);  
@@ -991,6 +1018,7 @@ async function Oponentplay(){
                         var fc = floordeck.appendChild(document.createElement('span'));
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
+                        fc.style.animation = "0.3s toflooroponent2sanimation ease-in-out";
                         fc.setAttribute('onclick', 'switchcard(this)');
                         fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
@@ -1017,8 +1045,13 @@ async function Oponentplay(){
                     }
                     for(i = 0; i < player2cards.length; i++){
                     var nc = playerdeck.appendChild(document.createElement('span'));
-                    nc.setAttribute('class', 'card3')
-                    nc.setAttribute('id', player2cards[i])
+                    nc.setAttribute('class', 'card3');
+                    nc.setAttribute('id', player2cards[i]);
+                    if(i == player2cards.length -1){
+                        nc.style.animation = "0.3s todeckoponent2animation ease-in-out";
+                    }else{
+                        nc.style.animation = "none";
+                    }
                     nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                     }
                     console.log(floorcards);
@@ -1069,6 +1102,7 @@ async function Oponentplay(){
                     fc = floordeck.appendChild(document.createElement('span'));
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
+                    fc.style.animation = "0.3s toflooroponent2sanimation ease-in-out";
                     fc.setAttribute('onclick', 'switchcard(this)');
                     fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
@@ -1080,6 +1114,11 @@ async function Oponentplay(){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card3');
                         nc.setAttribute('id', player2cards[i]);
+                        if(i == player2cards.length -1){
+                            nc.style.animation = "0.3s todeckoponent2animation ease-in-out";
+                        }else{
+                            nc.style.animation = "none";
+                        }
                         nc.style.backgroundImage = `url('./Images/cards/${player2cards[i]}.jpg')`;
                     }
                     console.log(floorcards);
@@ -1113,6 +1152,7 @@ async function Oponentplay(){
                     var nfc = fc.appendChild(document.createElement('span'));
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
+                    nfc.style.animation = "0.3s toflooroponent2sanimation ease-in-out";
                     nfc.setAttribute('onclick', 'switchcard(this)')
                     nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
@@ -1138,6 +1178,7 @@ async function Oponentplay(){
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card3");
                     nc.setAttribute("id", arr[x]);
+                    nc.style.animation = "0.3s packetoponent2animation ease-in-out";
                     nc.style.backgroundImage = `url('./Images/cards/${arr[x]}.jpg')`;
                     player2cards.push(arr[x])
                     arr.splice(x,1);  
@@ -1229,6 +1270,7 @@ async function Oponentplay(){
                             var fc = floordeck.appendChild(document.createElement('span'));
                             fc.setAttribute('class', 'card');
                             fc.setAttribute('id', combo[i]);
+                            fc.style.animation = "0.3s toflooroponent3sanimation ease-in-out";
                             fc.setAttribute('onclick', 'switchcard(this)');
                             fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                         }
@@ -1242,21 +1284,21 @@ async function Oponentplay(){
                         for(i = 0; i < player3cards.length; i++){
                             for(j = 0; j < floorcards.length; j++){
                                 if(player3cards[i] == floorcards[j]){
-                                    i -= 1;
                                     player3cards.splice(i,1);
                                 }
                             }
                         }
                         for(i = 0; i < player3cards.length; i++){
                             var nc = playerdeck.appendChild(document.createElement('span'));
-                            nc.setAttribute('class', 'card2')
-                            nc.setAttribute('id', player3cards[i])
+                            nc.setAttribute('class', 'card2');
+                            nc.setAttribute('id', player3cards[i]);
                             nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                         }
                         var x = Math.floor(Math.random()*arr.length);
                         nc = playerdeck.appendChild(document.createElement("span"));
                         nc.setAttribute("class", "card2");
                         nc.setAttribute("id", arr[x]);
+                        nc.style.animation = "0.3s packetoponent3animation ease-in-out";
                         nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                         player3cards.push(arr[x])
                         arr.splice(x,1);  
@@ -1289,6 +1331,7 @@ async function Oponentplay(){
                         var fc = floordeck.appendChild(document.createElement('span'));
                         fc.setAttribute('class', 'card');
                         fc.setAttribute('id', combo[i]);
+                        fc.style.animation = "0.3s toflooroponent3sanimation ease-in-out";
                         fc.setAttribute('onclick', 'switchcard(this)');
                         fc.style.backgroundImage = `url('./Images/cards/${combo[i]}.jpg')`;
                     }
@@ -1315,8 +1358,13 @@ async function Oponentplay(){
                     }
                     for(i = 0; i < player3cards.length; i++){
                     var nc = playerdeck.appendChild(document.createElement('span'));
-                    nc.setAttribute('class', 'card2')
-                    nc.setAttribute('id', player3cards[i])
+                    nc.setAttribute('class', 'card2');
+                    nc.setAttribute('id', player3cards[i]);
+                    if(i == player3cards.length -1){
+                        nc.style.animation = "0.3s todeckoponent3animation ease-in-out";
+                    }else{
+                        nc.style.animation = "none";
+                    }
                     nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                     }
                     console.log(floorcards);
@@ -1367,6 +1415,7 @@ async function Oponentplay(){
                     fc = floordeck.appendChild(document.createElement('span'));
                     fc.setAttribute('class', 'card');
                     fc.setAttribute('id', maxhandId);
+                    fc.style.animation = "0.3s toflooroponent3sanimation ease-in-out";
                     fc.setAttribute('onclick', 'switchcard(this)');
                     fc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
 
@@ -1377,6 +1426,11 @@ async function Oponentplay(){
                     for(i = 0; i < player3cards.length; i++){
                         nc = playerdeck.appendChild(document.createElement('span'));
                         nc.setAttribute('class','card2');
+                        if(i == player3cards.length -1){
+                            nc.style.animation = "0.3s todeckoponent3animation ease-in-out";
+                        }else{
+                            nc.style.animation = "none";
+                        }
                         nc.setAttribute('id', player3cards[i]);
                         nc.style.backgroundImage = `url('./Images/cards/oponents/${player3cards[i]}o.jpg')`;
                     }
@@ -1411,6 +1465,7 @@ async function Oponentplay(){
                     var nfc = fc.appendChild(document.createElement('span'));
                     nfc.setAttribute('class', 'card');
                     nfc.setAttribute('id', maxhandId);
+                    nfc.style.animation = "0.3s toflooroponent3sanimation ease-in-out";
                     nfc.setAttribute('onclick', 'switchcard(this)')
                     nfc.style.backgroundImage = `url('./Images/cards/${maxhandId}.jpg')`;
                     floorcards.push(maxhandId);
@@ -1436,6 +1491,7 @@ async function Oponentplay(){
                     nc = pcards.appendChild(document.createElement("span"));
                     nc.setAttribute("class", "card2");
                     nc.setAttribute("id", arr[x]);
+                    nc.style.animation = "0.3s packetoponent3animation ease-in-out";
                     nc.style.backgroundImage = `url('./Images/cards/oponents/${arr[x]}o.jpg')`;
                     player3cards.push(arr[x])
                     arr.splice(x,1);  
