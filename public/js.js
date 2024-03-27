@@ -765,7 +765,8 @@ async function Oponentplay(){
                     for(i = 0 ; i < floorcards.length; i++){
                         if(minhand == cardNum(floorcards[i])){
                             minhandId = floorcards[i];
-                            floorcards.splice(i,1);
+                            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                            floorcards = [];
                             break;
                         }
                     }
@@ -777,6 +778,7 @@ async function Oponentplay(){
                             break;
                         }
                     }
+                    floorcards.push(maxhandId);
                     console.log('aaaaaa' + minhandId);
                     console.log(maxhandId);
                     playerdeck = document.getElementById('pcards1');
@@ -1081,7 +1083,7 @@ async function Oponentplay(){
                     for(i = 0 ; i < floorcards.length; i++){
                         if(minhand == cardNum(floorcards[i])){
                             minhandId = floorcards[i];
-                            floorcards.splice(i,1);
+                            floorcards = [];
                             break;
                         }
                     }
@@ -1092,6 +1094,7 @@ async function Oponentplay(){
                             break;
                         }
                     }
+                    floorcards.push(maxhandId);
                     console.log('aaaaaa' + minhandId);
                     console.log(maxhandId);
                     playerdeck = document.getElementById('pcards2');
@@ -1394,7 +1397,7 @@ async function Oponentplay(){
                     for(i = 0 ; i < floorcards.length; i++){
                         if(minhand == cardNum(floorcards[i])){
                             minhandId = floorcards[i];
-                            floorcards.splice(i,1);
+                            floorcards = [];
                             break;
                         }
                     }
@@ -1405,6 +1408,7 @@ async function Oponentplay(){
                             break;
                         }
                     }
+                    floorcards.push(maxhandId);
                     console.log('aaaaaa' + minhandId);
                     console.log(maxhandId);
                     playerdeck = document.getElementById('pcards3');
