@@ -596,7 +596,7 @@ async function Oponentplay(){
                 var comboid = []; //save the combo id cards for future casting
                 for(i = 0; i < combo.length; i++){
                     comboid.push(combo[i]);
-                    combo[i] = cardNum(combo[i]);
+                    combo[i] = equalcards(combo[i]);
                 }
                 console.log('comboid'+comboid);
                 combo.sort();
@@ -608,7 +608,7 @@ async function Oponentplay(){
                 }
                 for(i = 0; i < comboid.length; i++){
                     for(j = 0; j < combo.length; j++){
-                        if(combo[j] != cardNum(comboid[i])){
+                        if(combo[j] != equalcards(comboid[i])){
                             comboid.splice(i,1);
                             i -= 1;
                             break;
@@ -917,7 +917,7 @@ async function Oponentplay(){
                 var comboid = []; //save the combo id cards for future casting
                 for(i = 0; i < combo.length; i++){
                     comboid.push(combo[i]);
-                    combo[i] = cardNum(combo[i]);
+                    combo[i] = equalcards(combo[i]);
                 }
                 console.log('comboid'+comboid);
                 combo.sort();
@@ -929,7 +929,7 @@ async function Oponentplay(){
                 }
                 for(i = 0; i < comboid.length; i++){ //6S 5A 6L// 6 6
                     for(j = 0; j < combo.length; j++){
-                        if(combo[j] != cardNum(comboid[i])){
+                        if(combo[j] != equalcards(comboid[i])){
                             comboid.splice(i,1);
                             i -= 1;
                             break;
@@ -1231,7 +1231,7 @@ async function Oponentplay(){
                 var comboid = []; //save the combo id cards for future casting
                 for(i = 0; i < combo.length; i++){
                     comboid.push(combo[i]);
-                    combo[i] = cardNum(combo[i]);
+                    combo[i] = equalcards(combo[i]);
                 }
                 console.log('comboid'+comboid);
                 combo.sort();
@@ -1243,7 +1243,7 @@ async function Oponentplay(){
                 }
                 for(i = 0; i < comboid.length; i++){ //6S 5A 6L// 6 6
                     for(j = 0; j < combo.length; j++){
-                        if(combo[j] != cardNum(comboid[i])){
+                        if(combo[j] != equalcards(comboid[i])){
                             comboid.splice(i,1);
                             i -= 1;
                             break;
@@ -1589,6 +1589,7 @@ function checkOponentsCards(player,playernum){ // check assaf
     return winner;
 }
 function oponentyaniv(){
+    document.getElementById('yanivbtn').disabled = true;
     if(turn == 1){
         document.getElementById('yanivaudio').play();
         document.getElementById(`player1msg`).style.display = 'block';
